@@ -1,4 +1,9 @@
 1.finish the SolidWorks modling；
 2.learning the c++ graphic coding
 3.review the c++ text book
-heo
+
+
+
+早上：stl
+中午：Python
+下午：cad
