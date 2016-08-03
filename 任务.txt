@@ -18,3 +18,8 @@
 感觉MFC遇到了瓶颈，需要攻克的话得先看看c++++
 额，fucking，ding
 start from which can easily get the thing from such suspect moving 
+
+图纸仍然存在的问题：
+在没有螺母位置的连接处需要加上螺纹孔；
+轴没改，阶梯，左右孔；
+和轴连接的下部支撑板上面对应的螺纹
