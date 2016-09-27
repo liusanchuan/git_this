@@ -1,0 +1,143 @@
+//#include <FlexiTimer2.h>    //用于mega，还有后面的setup需要修改
+#include <MsTimer2.h>     //用于uno，还有后面的setup需要修改
+
+//继电器HIGH为关；LOW为开
+//#define T1 150 //温度初步上升到此温度则停止加热
+//#define T2 160 //温控下线 
+#define T3 185 // 温控上线
+#define JDQ 8 //继电器控制引脚
+
+//这里定义四位数码管显示的三个脚
+int SCLK = 5;
+int RCLK = 4;
+int DIO = 3; 
+int ShuMaGuanGND=2;
+int ShuMaGuanVCC=6;
+unsigned char LED[4]; //用于LED的4位显示缓存
+
+int latest_5_tem[5];  //用于存最近五个温度示数，用于求平均值
+
+float a, RM, T; //a测量A0引脚模拟值;
+int aveTem;   //5个温度平均值，暂存总和
+
+unsigned char LED_0F[] =
+{ // 0   1    2    3  4  5    6    7  8  9    A    b  C    d    E    F    -
+  0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90, 0x8C, 0xBF, 0xC6, 0xA1, 0x86, 0xFF, 0xbf
+};
+
+
+
+//*********************000---000*********************//
+
+//定时器中断调用函数，用于测量温度并且显示温度值输出
+void Measure(){
+  
+  a = analogRead(A0);   //测量A0引脚模拟值
+  a/=205;         //转化为0~5V
+  RM = (94 * a) / (5 - a);    //热敏电阻阻值
+    T = 1177692 / (298.15 * log(RM / 100) + 3950) - 273.15;   //转化为温度
+  
+  //存储并向前移位最近五个温度示数
+  for(int i=0;i<4;i++){
+    latest_5_tem[i]=latest_5_tem[i+1];
+    aveTem+=latest_5_tem[i];
+  }
+  latest_5_tem[4]=T;
+  aveTem+=latest_5_tem[4];
+  aveTem/=5;
+  
+  //把最近5个温度平均值显示出来
+  LED[3] = 0;
+  LED[2] = aveTem / 100;
+    LED[1] = (aveTem% 100) / 10;
+    LED[0] = aveTem % 10;
+  
+  if(aveTem>T3){
+    digitalWrite(JDQ,HIGH);
+    
+  }else{
+    digitalWrite(JDQ,LOW);
+  }
+}
+
+void setup(){
+  //for UNO
+  MsTimer2::set(100, Measure); // 100ms period
+  MsTimer2::start();
+  
+  /*
+  //for MEGA
+  FlexiTimer2::set(100, 1.0 / 1000, Measure); /
+  FlexiTimer2::start();
+  */
+  
+  pinMode(JDQ, OUTPUT);
+  pinMode(SCLK, OUTPUT);
+  pinMode(RCLK, OUTPUT);
+  pinMode(DIO, OUTPUT); //让三个脚都是输出状态
+  
+  pinMode(ShuMaGuanGND,OUTPUT);
+  pinMode(ShuMaGuanVCC,OUTPUT);
+  
+  digitalWrite(ShuMaGuanGND,LOW);
+  digitalWrite(ShuMaGuanVCC,HIGH);
+}
+
+//此乃主程序本尊地位--+--
+void loop() {
+  LED4_Display();
+}
+
+//四位数码管显示程序
+void LED4_Display (void)
+{
+  unsigned char *led_table;          // 查表指针
+  unsigned char i;
+  //显示第1位
+  led_table = LED_0F + LED[0];
+  i = *led_table;
+  LED_OUT(i);
+  LED_OUT(0x01);
+  digitalWrite(RCLK, LOW);
+  digitalWrite(RCLK, HIGH);
+  //显示第2位
+  led_table = LED_0F + LED[1];
+  i = *led_table;
+  LED_OUT(i);
+  LED_OUT(0x02);
+  digitalWrite(RCLK, LOW);
+  digitalWrite(RCLK, HIGH);
+  //显示第3位
+  led_table = LED_0F + LED[2];
+  i = *led_table;
+  LED_OUT(i);
+  LED_OUT(0x04);
+  digitalWrite(RCLK, LOW);
+  digitalWrite(RCLK, HIGH);
+  //显示第4位
+  led_table = LED_0F + LED[3];
+  i = *led_table;
+  LED_OUT(i);
+  LED_OUT(0x08);
+  digitalWrite(RCLK, LOW);
+  digitalWrite(RCLK, HIGH);
+}
+
+void LED_OUT(unsigned char X)
+{
+  unsigned char i;
+  for (i = 8; i >= 1; i--)
+  {
+    if (X & 0x80)
+    {
+      digitalWrite(DIO, HIGH);
+    }
+    else
+    {
+      digitalWrite(DIO, LOW);
+    }
+    X <<= 1;
+    digitalWrite(SCLK, LOW);
+    digitalWrite(SCLK, HIGH);
+  }
+}

@@ -1,0 +1,774 @@
+#include <Keypad.h>
+#include <LiquidCrystal.h>
+#include <FlexiTimer2.h>
+#include <EEPROM.h>
+
+//12V直流电机驱动控制引脚
+
+#define Af 44
+#define Az 46
+
+#define Bf 48
+#define Bz 50
+
+#define ZuoCeJR 14
+#define YouCeJR 15
+#define MoDuanJR 43
+#define MoDuan2JR A2
+#define MoDuanCut 52
+#define CeFengZongDian 49
+
+#define ChongQiJDQ 51
+#define BuJinDianJiEnable 53    //步进电机使能脚，置高断开
+
+//220V交流电机引脚
+#define FanZhuanDir 45
+#define FanZhuanStart 47
+#define AutoButton A0
+
+
+int Jump;
+
+int i, j;
+int dir;  //步进电机方向
+int Auto = 0;
+
+int preheat;
+
+char customKey;    //检测按键值
+
+LiquidCrystal lcd(41, 39, 37, 35, 33, 31);    //lcd(12, 11, 5, 4, 3, 2);
+
+//4组步进电机方向引脚和速度引脚
+int dirPin [] = {
+  8, 9, 10, 11, 12
+};
+
+int stepperPin[] = {
+  7, 6, 5, 4, 3
+};
+
+int stepTone[] = {
+  600, 2000, 2000, 800, 1000
+};
+
+String XianShi1 = "Hello,I`m a cute";
+String XianShi2 = "Packer.  =3=";
+String XianShi1_Old;
+String XianShi2_Old;
+
+const byte ROWS = 5; //four rows
+const byte COLS = 6; //four columns
+//define the cymbols on the buttons of the keypads
+char hexaKeys[ROWS][COLS] = {
+  {
+    'A', 'B', 'C', 'D', 'E', 'F' //步进电机正传序列   dir=0;
+  }
+  ,
+  {
+    'a', 'b', 'c', 'd', 'e', 'f' //步进电机翻转序列   dir=1
+  }
+  ,
+  {
+    'G', 'H', 'I', 'J', 'K', 'L' //交流直流电机正传序列，前3----J：两侧加热；K：
+  }
+  ,
+  {
+    'g', 'h', 'i', 'j', 'k', 'l' //步进直流电机反转序列，前3
+  }, {
+    '1', '2', '3', '4', '5', '6'    //加热和充气的总开关
+  }
+};
+
+byte rowPins[ROWS] = {
+  34, 36, 38, 40, 42
+}; //connect to the row pinouts of the keypad
+byte colPins[COLS] = {
+  32, 30, 28, 26, 24, 22
+}; //connect to the column pinouts of the keypad
+
+//initialize an instance of class NewKeypad
+Keypad customKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
+
+
+
+////////////////////////******/////////////////////////////////////
+void ChongQi() {
+  while (1) {
+    customKey = customKeypad.getKey();
+    // Serial.println("CHongqi");
+    if (customKey == hexaKeys[2][5]) {
+      XianShi2 = "Blowing:Stop(42 25)";
+      XianShiPing();
+      digitalWrite(ChongQiJDQ, LOW);
+      while (1) {
+        customKey = customKeypad.getKey();
+        if (customKey == '6' || customKey == hexaKeys[2][5]) {
+          digitalWrite(ChongQiJDQ, HIGH);
+          break;
+        }
+
+      }
+    }
+    if (customKey == '6') {
+
+      break;
+    }
+  }
+
+}
+
+void CeFeng() {
+  int Z;
+  //customKey = '\0';
+  while (1) {
+
+    customKey = customKeypad.getKey();
+    // Serial.println(customKey);
+    if (customKey == '6') {
+      digitalWrite(CeFengZongDian, HIGH);
+      customKey = '\0';
+      break;
+    }
+    if (customKey == hexaKeys[2][3] || customKey == hexaKeys[2][4] || customKey == hexaKeys[2][5]) {
+      XianShi1 = "Zong,kai";
+      XianShiPing();
+      digitalWrite(CeFengZongDian, LOW);
+      if (customKey == hexaKeys[2][3]) {
+        XianShi2 = "zuoce,Kai";
+        XianShiPing();
+        digitalWrite(ZuoCeJR, LOW);
+        for (Z = 0; Z < 15; Z++) {
+          delay(100);
+          digitalWrite(CeFengZongDian, LOW);
+          digitalWrite(ZuoCeJR, LOW);
+        }
+        digitalWrite(ZuoCeJR, HIGH);
+        XianShi2 = "YouCe,Kai";
+        digitalWrite(YouCeJR, LOW);
+        for (Z = 0; Z < 15; Z++) {
+          delay(100);
+          // digitalWrite(ZuoCeJR, HIGH);
+          digitalWrite(CeFengZongDian, LOW);
+          digitalWrite(YouCeJR, LOW);
+        }
+        digitalWrite(YouCeJR, HIGH);
+
+
+      } else if (customKey == hexaKeys[2][4]) {
+        XianShi2 = "MoDuan:kai";
+        digitalWrite(MoDuanJR, LOW);
+        for (Z = 0; Z < 50; Z++) {
+          delay(100);
+          digitalWrite(MoDuanJR, LOW);
+          digitalWrite(CeFengZongDian, LOW);
+        }
+        digitalWrite(MoDuanJR, HIGH);
+
+
+        digitalWrite(MoDuan2JR, 0);
+        for (Z = 0; Z < 20; Z++) {
+          delay(100);
+
+          digitalWrite(CeFengZongDian, LOW);
+          analogWrite(MoDuan2JR, 0);
+        }
+        analogWrite(MoDuan2JR, 1023);
+
+
+      } else if (customKey == hexaKeys[2][5]) {
+        XianShi2 = "MoDuanCut";
+        digitalWrite(MoDuanCut, LOW);
+        for (Z = 0; Z < 45; Z++) {
+          delay(100);
+          digitalWrite(CeFengZongDian, LOW);
+          digitalWrite(MoDuanCut, LOW);
+        }
+        digitalWrite(MoDuanCut, HIGH);
+
+
+      }
+      digitalWrite(CeFengZongDian, HIGH);
+      customKey = '\0';
+      break;
+
+    }
+
+  }
+}
+
+void XianShiPing() {
+  if (XianShi1 != XianShi1_Old || XianShi2 != XianShi2_Old) {
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print(XianShi1);
+    lcd.setCursor(0, 1);
+    lcd.print(XianShi2);
+
+    XianShi1_Old = XianShi1;
+    XianShi2_Old = XianShi2;
+  }
+  {
+    lcd.setCursor(14, 1);
+    lcd.print(Jump);
+  }
+}
+
+//步进电机按键控制函数
+void StepperRun() {
+  int count = 0;
+  digitalWrite(BuJinDianJiEnable, LOW);     //步进电机使能脚，置低通
+  digitalWrite(dirPin[j], dir);
+  delay(50);
+  while (1) {
+    customKey = customKeypad.getKey();
+
+    digitalWrite(stepperPin[j], HIGH);
+    delayMicroseconds(stepTone[j]);
+    if (customKey) {
+      // digitalWrite(ChongQiJiaChi_JDQ,HIGH);
+
+      customKey = '\0';            //返回标志return
+      digitalWrite(BuJinDianJiEnable, HIGH);  //步进电机使能脚，置高断开
+      break;
+    }
+    digitalWrite(stepperPin[j], LOW);
+    delayMicroseconds(stepTone[j]);
+  }
+}
+
+//直流电机函数
+void ZhiLiuDianJi() {
+  if (customKey == hexaKeys[2][0]) {
+    digitalWrite(Bz, LOW);
+    digitalWrite(Bf, HIGH);
+  }
+  else if (customKey == hexaKeys[3][0]) {
+    digitalWrite(Bz, HIGH);
+    digitalWrite(Bf, LOW);
+  }
+  else if (customKey == hexaKeys[2][1]) {
+    digitalWrite(Az, HIGH);
+    digitalWrite(Af, LOW);
+  }
+  else if (customKey == hexaKeys[3][1]) {
+    digitalWrite(Az, LOW);
+    digitalWrite(Af, HIGH);
+  }
+  //delay(500);
+  //检测是否停止直流电机并且退出
+  while (1) {
+    customKey = customKeypad.getKey();
+    //customKey = Serial.read();
+    //Serial.println(customKey);
+    if (customKey) {
+
+      customKey = '\0';
+      digitalWrite(Af, LOW);
+      digitalWrite(Az, LOW);
+      digitalWrite(Bz, HIGH);
+      digitalWrite(Bf, HIGH);
+      break;
+    }
+  }
+}
+
+//220V交流电机正反转控制函数
+void JiaoLiuDianJi() {
+
+  if (customKey == hexaKeys[2][2]) {
+    digitalWrite(FanZhuanDir, LOW);
+    digitalWrite(FanZhuanStart, HIGH);
+  }
+  else if (customKey == hexaKeys[3][2]) {
+    digitalWrite(FanZhuanDir, LOW);
+    digitalWrite(FanZhuanStart, LOW);
+  }
+  //delay(500);
+  //检测是否停止交流电机并且退出
+  while (1) {
+    customKey = customKeypad.getKey();
+    //customKey = Serial.read();
+    //Serial.println(customKey);
+    //Serial.println(customKey);
+    if (customKey) {
+
+      customKey = '\0';
+      digitalWrite(FanZhuanDir, HIGH);
+      digitalWrite(FanZhuanStart, HIGH);
+      break;
+    }
+  }
+}
+//顺序流程——步进电机按键控制函数
+void SXStepperRun(int num, int direction, long Cycle, int speed) { //步进电机序号，方向，转动周期
+  digitalWrite(BuJinDianJiEnable, LOW);
+  //步进电机使能脚，置低通
+
+  digitalWrite(dirPin[num], direction);
+  delay(50);
+  while (--Cycle) {
+    digitalWrite(stepperPin[num], HIGH);
+    delayMicroseconds(speed);
+    digitalWrite(stepperPin[num], LOW);
+    delayMicroseconds(speed);
+  }
+  digitalWrite(BuJinDianJiEnable, HIGH);
+}
+
+//直流电机函数
+void SXZhiLiuDianJi(char Key, float delays) { //按键值，延时delays*100ms
+
+  if (Key == hexaKeys[2][0]) {
+    digitalWrite(Bz, LOW);
+    digitalWrite(Bf, HIGH);
+  }
+  else if (Key == hexaKeys[3][0]) {
+    digitalWrite(Bz, HIGH);
+    digitalWrite(Bf, LOW);
+  }
+  else if (Key == hexaKeys[2][1]) {
+    digitalWrite(Az, HIGH);
+    digitalWrite(Af, LOW);
+  }
+  else if (Key == hexaKeys[3][1]) {
+    digitalWrite(Az, LOW);
+    digitalWrite(Af, HIGH);
+  }
+
+  for (int i = 0; i < delays; i++) {
+    if (Key == hexaKeys[2][0]) {
+      digitalWrite(Bz, LOW);
+      digitalWrite(Bf, HIGH);
+    }
+    else if (Key == hexaKeys[3][0]) {
+      digitalWrite(Bz, HIGH);
+      digitalWrite(Bf, LOW);
+    }
+    else if (Key == hexaKeys[2][1]) {
+      digitalWrite(Az, HIGH);
+      digitalWrite(Af, LOW);
+    }
+    else if (Key == hexaKeys[3][1]) {
+      digitalWrite(Az, LOW);
+      digitalWrite(Af, HIGH);
+    }
+    delay(1000);
+  }
+
+  digitalWrite(Af, HIGH);
+  digitalWrite(Az, HIGH);
+  digitalWrite(Bz, HIGH);
+  digitalWrite(Bf, HIGH);
+}
+
+
+void Continue() {
+  int Z = 0;
+  if (customKey == hexaKeys[4][3]) {
+    Jump = 1;
+  } else if (customKey == hexaKeys[3][3]) {
+    Jump = EEPROM.read(63);
+  }
+  XianShiPing();
+  switch (Jump) {
+    case 1:
+      //翻转预留 20*2+25；
+      digitalWrite(FanZhuanDir, LOW);
+      digitalWrite(FanZhuanStart, LOW);
+      for (Z = 0; Z < 520; Z++) {
+        digitalWrite(FanZhuanDir, LOW);
+        digitalWrite(FanZhuanStart, LOW);
+        delay(100);
+      }
+      digitalWrite(FanZhuanDir, HIGH);
+      digitalWrite(FanZhuanStart, HIGH);
+      digitalWrite(FanZhuanDir, HIGH);
+      digitalWrite(FanZhuanStart, HIGH);
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+    case 2:
+      digitalWrite(FanZhuanDir, LOW);
+      digitalWrite(FanZhuanStart, HIGH);
+      digitalWrite(FanZhuanDir, LOW);
+      digitalWrite(FanZhuanStart, HIGH);
+      delay(500);
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+    case 3:
+      SXStepperRun(0, 0, 200 * 70, 600);
+      digitalWrite(FanZhuanDir, HIGH);
+      digitalWrite(FanZhuanStart, HIGH);
+      digitalWrite(FanZhuanDir, HIGH);
+      digitalWrite(FanZhuanStart, HIGH);
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+    case 4:
+      /* 推板总长150mm，齿轮周长20*3，2.5圈 500步*/
+      XianShi2 = "TuiBan_ShenChu";
+      XianShiPing();
+      SXStepperRun(2, 0, 300, 2000); //推板伸出
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+    case 5:
+      XianShi2 = "TuoBan_ShouHui";
+      XianShiPing();
+      SXStepperRun(1, 1, 380, 1000); //托板收回
+      XianShi2 = "TuiBan_ShouHui";
+      XianShiPing();
+      SXStepperRun(2, 1, 300, 2000); //推板收回
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+
+    /* 断点 */
+    case 6:
+      SXStepperRun(4, 1, 200 * 4, 1000);  //充气嘴加持推杆电机下；
+      digitalWrite(FanZhuanDir, LOW);
+      digitalWrite(FanZhuanStart, HIGH);
+      digitalWrite(FanZhuanDir, LOW);
+      digitalWrite(FanZhuanStart, HIGH);
+      delay(1000);
+      digitalWrite(Bz, LOW);    //Y_Up
+      digitalWrite(Bf, HIGH);
+      delay(10200);
+      digitalWrite(Bz, HIGH);
+      digitalWrite(Bf, HIGH);
+
+      delay(1000);
+      digitalWrite(FanZhuanDir, HIGH);
+      digitalWrite(FanZhuanStart, HIGH);
+      digitalWrite(FanZhuanDir, HIGH);
+      digitalWrite(FanZhuanStart, HIGH);
+      XianShiPing();
+      EEPROM.write(63, ++Jump);
+    case 7:
+      SXStepperRun(0, 1, 200 * 42, 600);  //水平回 6s 10cm
+      digitalWrite(Bz, HIGH);    //Y_Down
+      digitalWrite(Bf, LOW);
+      delay(10200);
+      digitalWrite(Bz, HIGH);
+      digitalWrite(Bf, HIGH);
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+    case 8:
+      /* 归零 */
+      digitalWrite(FanZhuanDir, LOW);
+      digitalWrite(FanZhuanStart, HIGH);
+      digitalWrite(FanZhuanDir, LOW);
+      digitalWrite(FanZhuanStart, HIGH);
+      SXStepperRun(0, 1, 200 * 28, 800);  //水平归零  6.72s
+      digitalWrite(FanZhuanDir, HIGH);
+      digitalWrite(FanZhuanStart, HIGH);
+      digitalWrite(FanZhuanDir, HIGH);
+      digitalWrite(FanZhuanStart, HIGH);
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+
+    /* 断点2 */
+
+    case 9:
+
+      /* 两侧下压，需要6S，30圈 */
+      SXStepperRun(3, 1, 200 * 15, 800);
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+    case 10:
+      /* 推杆电机，速度12.8mm/s,下压50mm，3.9s */
+      SXZhiLiuDianJi('h', 7.5); //推杆下
+      //两侧加热
+      digitalWrite(CeFengZongDian, LOW);
+      digitalWrite(ZuoCeJR, LOW);
+      for (Z = 0; Z < 15; Z++) {
+        delay(100);
+        digitalWrite(CeFengZongDian, LOW);
+        digitalWrite(ZuoCeJR, LOW);
+      }
+
+      digitalWrite(ZuoCeJR, HIGH);
+
+      digitalWrite(YouCeJR, LOW);
+      for (Z = 0; Z < 15; Z++) {
+        delay(100);
+        digitalWrite(YouCeJR, LOW);
+      }
+      digitalWrite(YouCeJR, HIGH);
+      digitalWrite(CeFengZongDian, HIGH);
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+    case 11:
+
+
+      //推杆电机上升
+      digitalWrite(Az, HIGH);
+      digitalWrite(Af, LOW);
+      delay(4000);
+      //充气开
+      {
+        digitalWrite(ChongQiJDQ, LOW);
+      }
+
+      SXStepperRun(3, 0, 200 * 11, 800);  //两侧上升
+      digitalWrite(Az, HIGH);
+      digitalWrite(Af, HIGH);
+      delay(2000);
+
+      //推杆电机下压
+      digitalWrite(Az, LOW);
+      digitalWrite(Af, HIGH);
+      //两侧下压
+      SXStepperRun(3, 1, 200 * 11, 800);
+      digitalWrite(Az, LOW);
+      digitalWrite(Af, HIGH);
+      delay(4000);
+      digitalWrite(Az, HIGH);
+      digitalWrite(Af, HIGH);
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+    case 12:
+        { //充气关
+        digitalWrite(ChongQiJDQ, HIGH);
+      }
+      /* 末端加热 */
+      digitalWrite(CeFengZongDian, LOW);
+      digitalWrite(MoDuanJR, LOW);
+      for (Z = 0; Z < 50; Z++) {
+        delay(100);
+        digitalWrite(CeFengZongDian, LOW);
+        digitalWrite(MoDuanJR, LOW);
+      }
+      digitalWrite(MoDuanJR, HIGH);
+
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+    case 13:
+      { //充气关
+        digitalWrite(ChongQiJDQ, HIGH);
+      }
+          digitalWrite(MoDuan2JR, 0);
+      for (Z = 0; Z < 20; Z++) {
+        delay(100);
+        digitalWrite(CeFengZongDian, LOW);
+        analogWrite(MoDuan2JR, 0);
+      }
+      analogWrite(MoDuan2JR, 1023);
+      digitalWrite(CeFengZongDian, HIGH);
+      delay(2000);
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+    case 14:
+      //推杆电机上升50%
+      digitalWrite(Az, HIGH);
+      digitalWrite(Af, LOW);
+      delay(4000);
+      SXStepperRun(3, 0, 200 * 12, 800);  //两侧上升
+      digitalWrite(Az, LOW);
+      digitalWrite(Af, HIGH);
+      SXStepperRun(3, 0, 200 * 3, 800);
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+    case 15:
+      //推杆电机下压
+      SXZhiLiuDianJi('h', 8);
+      //末端切断
+      digitalWrite(CeFengZongDian, LOW);
+      digitalWrite(MoDuanCut, LOW);
+      for (Z = 0; Z < 40; Z++) {
+        delay(100);
+        digitalWrite(CeFengZongDian, LOW);
+        digitalWrite(MoDuanCut, LOW);
+      }
+      digitalWrite(MoDuanCut, HIGH);
+      digitalWrite(CeFengZongDian, HIGH);
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+    case 16:
+
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+
+    case 17:
+      //推杆电机上升
+      SXZhiLiuDianJi('H', 8);
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+    case 18:
+      //充气嘴夹松开
+      SXStepperRun(4, 0, 200 * 4, 1000);
+      EEPROM.write(63, ++Jump);
+      XianShiPing();
+  }
+}
+
+
+
+
+void setup() {
+  //Serial.begin(9600);
+
+  //步进电机
+  for (int k = 0; k < 5; k++) {
+    pinMode(stepperPin[k], OUTPUT);
+    pinMode(dirPin[k], OUTPUT);
+  }
+  lcd.begin(16, 2);   //设置显示屏为1602型
+  XianShiPing();
+  //12V直流电机
+  pinMode(Az, OUTPUT);
+  pinMode(Af, OUTPUT);
+  pinMode(Bz, OUTPUT);
+  pinMode(Bf, OUTPUT);
+
+  //attachInterrupt(5, Stop, FALLING);
+
+  pinMode(FanZhuanDir, OUTPUT);
+  pinMode(FanZhuanStart, OUTPUT);
+
+  digitalWrite(FanZhuanDir, HIGH);
+  digitalWrite(FanZhuanStart, HIGH);
+
+  pinMode(BuJinDianJiEnable, OUTPUT);
+  digitalWrite(BuJinDianJiEnable, HIGH); //开始时，断开使能
+  pinMode(ZuoCeJR, OUTPUT);
+  pinMode(YouCeJR, OUTPUT);
+  pinMode(MoDuanJR, OUTPUT);
+  pinMode(MoDuanCut, OUTPUT);
+  pinMode(CeFengZongDian, OUTPUT);
+  pinMode(ChongQiJDQ, OUTPUT);
+
+  digitalWrite(ZuoCeJR, HIGH);
+  digitalWrite(YouCeJR, HIGH);
+  digitalWrite(MoDuanJR, HIGH);
+  analogWrite(MoDuan2JR, 1023);
+  digitalWrite(MoDuanCut, HIGH);
+
+  digitalWrite(CeFengZongDian, HIGH);
+  digitalWrite(ChongQiJDQ, HIGH);
+
+  digitalWrite(Af, LOW);
+  digitalWrite(Az, LOW);
+  digitalWrite(Bz, HIGH);
+  digitalWrite(Bf, HIGH);
+  delay(200);
+}
+
+
+//按键设计思路：先按1键进入步进电机选择模式，然后检测哪路步进电机和正反转；
+void loop() {
+
+  Auto = analogRead(AutoButton);
+
+
+  if (Auto > 512) {
+
+    customKey = '\0';
+    Jump = EEPROM.read(63);
+    XianShi1 = "START JUMP";
+    XianShi2 = Jump;
+    XianShiPing();
+    Continue();
+  }
+
+  while (1) {
+    XianShi1 = "Packing";
+    XianShi2 = "Detect Keypad";
+    XianShiPing();
+
+    customKey = customKeypad.getKey();
+    //Serial.println(customKey);
+    // customKey = Serial.read();
+    if (customKey) {
+      for ( i = 0; i < 2; i++) {
+        for (j = 0; j < 5; j++) {
+          if (customKey == hexaKeys[0][j]) {
+            XianShi2 = "Stepper:Runing";
+            XianShiPing();
+            dir = 0;
+            StepperRun();
+            customKey = '\0';
+            break;
+          } else if (customKey == hexaKeys[1][j]) {
+            XianShi2 = "Stepper:Runing";
+            XianShiPing();
+            dir = 1;
+            StepperRun();
+            customKey = '\0';
+            break;
+          }
+        }
+        if (customKey == '\0') {
+          XianShi2 = "Stepper:Stop";
+          XianShiPing();
+          break;
+        }
+      }
+      for (i = 2; i <= 3; i++) {
+        for (j = 0; j < 2; j++) {
+          if (customKey == hexaKeys[i][j]) {
+            XianShi2 = "  ZhiLiu:Runing";
+            XianShiPing();
+            ZhiLiuDianJi();
+            customKey = '\0';
+            break;
+          }
+        }
+        if (customKey == hexaKeys[2][2] || customKey == hexaKeys[3][2]) {
+          XianShi2 = "JiaoLiu:Runing";
+          XianShiPing();
+          JiaoLiuDianJi();
+          customKey = '\0';
+          break;
+        }
+      }
+      if (customKey == hexaKeys[4][0]) {
+        XianShi1 = "LaingCeMoDuan:HEAT";
+        XianShi2 = "press:23 OR 24";
+        XianShiPing();
+        CeFeng();
+        customKey = '\0';
+      }
+      if (customKey == hexaKeys[4][1]) {
+        XianShi1 = "ChongQi:";
+        XianShi2 = "preparing";
+        XianShiPing();
+        ChongQi();
+        customKey = '\0';
+      }
+      if (customKey == hexaKeys[4][3]) {
+        XianShi1 = "ShunXu_LiuCheng Mode";
+        XianShi2 = "ShunXu_LiuCheng Mode";
+        XianShiPing();
+
+        Continue();
+        //ShunXu_LiuCheng();
+      }
+      if (customKey == hexaKeys[3][3]) {
+        XianShi1 = "ShunXu_LiuCheng Mode";
+        XianShi2 = "continue";
+
+        Continue();
+      }
+      if (customKey == hexaKeys[3][4]) {
+        XianShi1 = "DD:TuiBan";
+        XianShiPing();
+        Jump = 4;
+        Continue();
+      }
+      if (customKey == hexaKeys[3][5]) {
+        XianShi1 = "DD:LingDian";
+        XianShiPing();
+        Jump = 9;
+        Continue();
+      }
+      if (customKey == hexaKeys[0][5]) {
+        XianShi1 = "Preheat";
+        XianShiPing();
+        if (preheat == 0) {
+          analogWrite(A1, 1023);
+        } else {
+          analogWrite(A1, 0);
+        }
+      }
+    }
+  }
+}
+
