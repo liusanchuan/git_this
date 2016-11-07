@@ -33,6 +33,105 @@ css笔记：
 	}
 	
 	
+	sql:
+	
+	C#写入sql命令：
+	                string str = "server=.;database=People;Integrated Security=SSPI;";
+
+                SqlConnection con = new SqlConnection(str); //创建连接对象
+                con.Open(); //打开连接
+                string strsql = "insert into pe(id,name,age,birthday) values('3','sanchuan','22','201212')"; // 编写SQL语句
+                SqlCommand sqlcommand = con.CreateCommand();
+                sqlcommand.CommandText = strsql;
+                
+                sqlcommand.ExecuteNonQuery();
+                //SqlCommand cmd = new SqlCommand(strsql, con);   
+                con.Close();
+	C#读取TX然后写进数据库中：
+ DataTable table = new DataTable();
+            string[] ColumnsName={
+                                     "Timestamp",
+                                     "S1",
+                                     "S2",
+                                     "S3",
+                                     "S4",
+                                     "S5",
+                                     "S6",
+                                     "S7",
+                                     "S8",
+                                     "S9",
+                                     "S10",
+                                     "T1","T2","T3","T4","T5","T6","T7","T8","T9","T10"
+                                 };
+            for (int i = 0; i < ColumnsName.Length; i++)
+            {
+                table.Columns.Add(ColumnsName[i], typeof(SqlString));
+            }
+            //table.Columns.Add("Timestamp", typeof(SqlString));
+
+
+            string text = File.ReadAllText(@"E:\program\测评\Sensors.20160612182433.txt");
+            string[] str1 = text.Split('\n');
+            int str1_length = str1.Length;
+            for (int i = 3; i < str1_length-2; i++)
+            {
+                string[] str1_child = str1[i].Split('\t');
+                int a=str1_child.Length;
+                DataRow row = table.NewRow();
+                for (int j = 0; j < ColumnsName.Length; j++)
+                {
+                    String ac = ColumnsName[j];
+                    row[ac]=str1_child[j];
+                }
+                table.Rows.Add(row);
+
+
+
+            }
+            dataGridView1.DataSource = table;
+            string str = "server=.;database=PlatformFlawBase;Integrated Security=SSPI;";
+            SqlConnection con = new SqlConnection(str); //创建连接对象
+            con.Open(); //打开连接
+            SqlBulkCopy bulkcopy = new SqlBulkCopy(con);
+            bulkcopy.DestinationTableName = "dbo.SanChuan";
+            bulkcopy.WriteToServer(table);	
+			
+			从数据库中取出并且使用dataset来处理
+		            string str = "server=.;database=People;Integrated Security=SSPI;";
+            SqlConnection conn = new SqlConnection(str);
+            string sqlqury = "select ID from Person;";
+            conn.Open();
+            SqlDataAdapter sdr = new SqlDataAdapter(sqlqury,conn);
+            DataSet ds = new DataSet();   //dataset相当于临时的数据库，里面可以存放很多的table，
+            sdr.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0].DefaultView;    //默认存放于table【0】中
+            DataRow da = ds.Tables[0].Rows[0];          //可以按照行row[0],列colum[0],第二列第一行colum[2][1]来取，所取得为一个datarow数组，然后再取此数组中的某一行
+            button1.Text = Convert.ToString(da[0]);     //显示类型转换，
+			
+		ms chart：
+		private void button1_Click(object sender, EventArgs e)
+        {
+            string str = "server=.;database=PlatformFlawBase;Integrated Security=SSPI;";
+            SqlConnection conn = new SqlConnection(str);
+            string sqlqury = "select T5,T6,T7 from SanChuan;";
+            conn.Open();
+            SqlDataAdapter sdr = new SqlDataAdapter(sqlqury, conn);
+            DataSet ds = new DataSet();   //dataset相当于临时的数据库，里面可以存放很多的table，
+            sdr.Fill(ds);
+            dataGridView1.DataSource = ds.Tables[0].DefaultView;    //默认存放于table【0】中
+            //button1.Text = Convert.ToString(da[0]);     //显示类型转换，
+            Double[] series1 = new Double[100];
+            int[] X = new int[100];
+            for (int i = 0; i < 100; i++)
+            {
+                DataRow da = ds.Tables[0].Rows[i];          //可以按照行row[0],列colum[0],第二列第一行colum[2][1]来取，所取得为一个datarow数组，然后再取此数组中的某一行            
+                series1[i] = Convert.ToDouble(da[0]);
+                
+                X[i] = i;
+            }
+            chart1.Series[0].Points.DataBindXY(X, series1);
+        }
+	
 	紫茎兮文波，红莲兮芰荷。绿房兮翠盖，素实兮黄螺。 于是妖童媛女，荡舟心许，鷁（yì）首徐回，兼传羽杯。櫂(zhào)将移而藻挂，船欲动而萍开。尔其纤腰束素，迁延顾步。夏始春余，叶嫩花初。恐沾裳而浅笑，畏倾船而敛裾， 故以水溅兰桡，芦侵罗褠。菊泽未反，梧 台迥见，荇湿沾衫，菱长绕钏。泛柏舟而容与，歌采莲于江渚。歌曰：“碧玉小家女，来嫁汝南王。莲花乱脸色，荷叶杂衣香。因持荐君子，愿袭芙蓉裳。”
  
  
