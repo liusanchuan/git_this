@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssessSoftware", "SharpGLWinformsApplication1\AssessSoftware.csproj", "{911A32FE-3ECD-4E57-9CD6-C0E6236DE9E6}"
+EndProject
+Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Setup1", "Setup1\Setup1.isproj", "{BBF35103-4EBD-4F62-9C89-310E75D49327}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|x86 = CD_ROM|x86
+		Debug|x86 = Debug|x86
+		DVD-5|x86 = DVD-5|x86
+		Release|x86 = Release|x86
+		SingleImage|x86 = SingleImage|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{911A32FE-3ECD-4E57-9CD6-C0E6236DE9E6}.CD_ROM|x86.ActiveCfg = Release|x86
+		{911A32FE-3ECD-4E57-9CD6-C0E6236DE9E6}.CD_ROM|x86.Build.0 = Release|x86
+		{911A32FE-3ECD-4E57-9CD6-C0E6236DE9E6}.Debug|x86.ActiveCfg = Debug|x86
+		{911A32FE-3ECD-4E57-9CD6-C0E6236DE9E6}.Debug|x86.Build.0 = Debug|x86
+		{911A32FE-3ECD-4E57-9CD6-C0E6236DE9E6}.DVD-5|x86.ActiveCfg = Debug|x86
+		{911A32FE-3ECD-4E57-9CD6-C0E6236DE9E6}.DVD-5|x86.Build.0 = Debug|x86
+		{911A32FE-3ECD-4E57-9CD6-C0E6236DE9E6}.Release|x86.ActiveCfg = Release|x86
+		{911A32FE-3ECD-4E57-9CD6-C0E6236DE9E6}.Release|x86.Build.0 = Release|x86
+		{911A32FE-3ECD-4E57-9CD6-C0E6236DE9E6}.SingleImage|x86.ActiveCfg = Release|x86
+		{911A32FE-3ECD-4E57-9CD6-C0E6236DE9E6}.SingleImage|x86.Build.0 = Release|x86
+		{BBF35103-4EBD-4F62-9C89-310E75D49327}.CD_ROM|x86.ActiveCfg = CD_ROM
+		{BBF35103-4EBD-4F62-9C89-310E75D49327}.CD_ROM|x86.Build.0 = CD_ROM
+		{BBF35103-4EBD-4F62-9C89-310E75D49327}.Debug|x86.ActiveCfg = DVD-5
+		{BBF35103-4EBD-4F62-9C89-310E75D49327}.Debug|x86.Build.0 = DVD-5
+		{BBF35103-4EBD-4F62-9C89-310E75D49327}.DVD-5|x86.ActiveCfg = DVD-5
+		{BBF35103-4EBD-4F62-9C89-310E75D49327}.DVD-5|x86.Build.0 = DVD-5
+		{BBF35103-4EBD-4F62-9C89-310E75D49327}.Release|x86.ActiveCfg = SingleImage
+		{BBF35103-4EBD-4F62-9C89-310E75D49327}.Release|x86.Build.0 = SingleImage
+		{BBF35103-4EBD-4F62-9C89-310E75D49327}.SingleImage|x86.ActiveCfg = SingleImage
+		{BBF35103-4EBD-4F62-9C89-310E75D49327}.SingleImage|x86.Build.0 = SingleImage
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
