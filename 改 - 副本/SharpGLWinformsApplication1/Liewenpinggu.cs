@@ -27,7 +27,11 @@ namespace SharpGLWinformsApplication1
 
         DataTable dt = new DataTable("Liewen");
 
-        private string ConnectionString = "Integrated Security=SSPI;Initial Catalog=PlatformFlawBase;Data Source=localhost";
+        //private string ConnectionString = "Integrated Security=SSPI;Initial Catalog=PlatformFlawBase;Data Source=localhost";
+
+        sqlConnection sqlconn= new sqlConnection();
+        private string ConnectionString =null;
+
         private SqlConnection conn = null;
         private SqlCommand cmd = null;
         private string sql = null;
@@ -40,6 +44,7 @@ namespace SharpGLWinformsApplication1
         {
             InitializeComponent();
             // 创建一个连接
+            ConnectionString = sqlconn.str;
             conn = new SqlConnection(ConnectionString);
         }
         /**
@@ -47,6 +52,7 @@ namespace SharpGLWinformsApplication1
       **/
         private void Liewenpinggu_Load(object sender, EventArgs e)
         {
+
                         dt.Columns.Add("ID");
             dt.Columns.Add("X(坐标)");
             dt.Columns.Add("Y(坐标)");
@@ -96,60 +102,60 @@ namespace SharpGLWinformsApplication1
                 sql = "SELECT * FROM  CrackInfo ";
                 string condition = "";
                 if (textBox1.Text.Trim() != "")
-                    condition = " [StartPoint X(°)] BETWEEN " + Convert.ToDouble(textBox1.Text) + "-5 AND " + Convert.ToDouble(textBox1.Text) + "+5";
+                    condition = " [StartPoint X(°)] BETWEEN " + Convert.ToDouble(textBox1.Text) + "-1 AND " + Convert.ToDouble(textBox1.Text) + "+1";
                 if (textBox15.Text.Trim() != "")
                 {
                     if (condition.Length > 0)
                     {
-                        condition += "AND [StartPoint Y(°)] BETWEEN " + Convert.ToDouble(textBox15.Text) + "-5 AND " + Convert.ToDouble(textBox15.Text) + "+5";
+                        condition += "AND [StartPoint Y(°)] BETWEEN " + Convert.ToDouble(textBox15.Text) + "-1 AND " + Convert.ToDouble(textBox15.Text) + "+1";
 
                     }
                     else
                     {
-                        condition = " [StartPoint Y(°)] BETWEEN " + Convert.ToDouble(textBox15.Text) + "-5 AND " + Convert.ToDouble(textBox15.Text) + "+5";
+                        condition = " [StartPoint Y(°)] BETWEEN " + Convert.ToDouble(textBox15.Text) + "-1 AND " + Convert.ToDouble(textBox15.Text) + "+1";
                     }
                 }
-                if (textBox2.Text.Trim() != "")
-                {
-                    if (condition.Length > 0)
-                    {
-                        condition += "AND [CrackWidth(mm)] BETWEEN " + Convert.ToDouble(textBox2.Text) + "-5 AND " + Convert.ToDouble(textBox2.Text) + "+5";
-                    }
-                    else
-                    {
-                        condition = " [CrackWidth(mm)] BETWEEN " + Convert.ToDouble(textBox2.Text) + "-5 AND " + Convert.ToDouble(textBox2.Text) + "+5";
-                    }
+                //if (textBox2.Text.Trim() != "")
+                //{
+                //    if (condition.Length > 0)
+                //    {
+                //        condition += "AND [CrackWidth(mm)] BETWEEN " + Convert.ToDouble(textBox2.Text) + "-5 AND " + Convert.ToDouble(textBox2.Text) + "+5";
+                //    }
+                //    else
+                //    {
+                //        condition = " [CrackWidth(mm)] BETWEEN " + Convert.ToDouble(textBox2.Text) + "-5 AND " + Convert.ToDouble(textBox2.Text) + "+5";
+                //    }
 
-                }
+                //}
                 if (textBox3.Text.Trim() != "")
                 {
                     if (condition.Length > 0)
                     {
-                        condition += "AND [CrackDepth(mm)] BETWEEN " + Convert.ToDouble(textBox3.Text) + "-5 AND " + Convert.ToDouble(textBox3.Text) + "+5";
+                        condition += "AND [CrackDepth(mm)] BETWEEN " + Convert.ToDouble(textBox3.Text) + "-1 AND " + Convert.ToDouble(textBox3.Text) + "+1";
                     }
                     else
                     {
-                        condition = " [CrackDepth(mm)] BETWEEN " + Convert.ToDouble(textBox3.Text) + "-5 AND " + Convert.ToDouble(textBox3.Text) + "+5";
+                        condition = " [CrackDepth(mm)] BETWEEN " + Convert.ToDouble(textBox3.Text) + "-1 AND " + Convert.ToDouble(textBox3.Text) + "+1";
                     }
                 }
-                if (textBox14.Text.Trim() != "")
-                {
-                    if (condition.Length > 0)
-                    {
-                        condition += "AND [CrackAngle   (°)] BETWEEN " + Convert.ToDouble(textBox14.Text) + "-5 AND " + Convert.ToDouble(textBox14.Text) + "+5";
-                    }
-                    else
-                    {
-                        condition = " [CrackAngle   (°)] BETWEEN " + Convert.ToDouble(textBox14.Text) + "-5 AND " + Convert.ToDouble(textBox14.Text) + "+5";
-                    }
-                }
+                //if (textBox14.Text.Trim() != "")
+                //{
+                //    if (condition.Length > 0)
+                //    {
+                //        condition += "AND [CrackAngle   (°)] BETWEEN " + Convert.ToDouble(textBox14.Text) + "-5 AND " + Convert.ToDouble(textBox14.Text) + "+5";
+                //    }
+                //    else
+                //    {
+                //        condition = " [CrackAngle   (°)] BETWEEN " + Convert.ToDouble(textBox14.Text) + "-5 AND " + Convert.ToDouble(textBox14.Text) + "+5";
+                //    }
+                //}
                 if (condition != "")
                     sql += " where " + condition;
                 da = new SqlDataAdapter(sql, conn);
                 // 创建一个数据集对象并填充数据，然后将数据显示在DataGrid控件中
                 da.Fill(ds);
                 dataGridView1.DataSource = ds.Tables[0].DefaultView;
-                int R = dataGridView1.Rows.Count - 1;
+                int R = dataGridView1.Rows.Count ;
                 conn.Close();
                 if (R == 0)
                 {
@@ -175,22 +181,28 @@ namespace SharpGLWinformsApplication1
             var count = 0;
             if (conn.State != ConnectionState.Open)
                 conn.Close();
+            if(Convert.ToDouble(textBox1.Text.Trim())>=7.5||Convert.ToDouble(textBox1.Text.Trim())<=-7.5||Convert.ToDouble(textBox15.Text.Trim())>=7.5||Convert.ToDouble(textBox15.Text.Trim())<=-7.5){
+                MessageBox.Show("所输入坐标信息超出范围");
+                textBox1.Text="";
+                textBox15.Text="";
+                return;
+            }
             //ConnectionString = "Data Source=MS-20160121SCPS;Initial Catalog=PlatformFlawBase;"
             //    + "Persist Security Info=True;User ID=sa;Password=zf19891014";
             foreach (DataGridViewRow v in dataGridView1.Rows)
             {
-                if (v.Cells[0].Value != null && v.Cells[1].Value != null && v.Cells[2].Value != null && v.Cells[3].Value != null && v.Cells[4].Value != null && v.Cells[5].Value != null)
+                if (v.Cells[0].Value != null && v.Cells[1].Value != null && v.Cells[2].Value != null && v.Cells[3].Value != null )
                 {
                             if (v.Cells[0].Value.ToString().Equals(textBox1.Text.Trim())
                                 && v.Cells[1].Value.ToString().Equals(textBox15.Text.Trim())
-                                && v.Cells[2].Value.ToString().Equals(textBox2.Text.Trim())
-                                && v.Cells[3].Value.ToString().Equals(textBox3.Text.Trim())
-                                && v.Cells[4].Value.ToString().Equals(textBox14.Text.Trim())
-                                && v.Cells[5].Value.ToString().Equals(textBox16.Text.Trim()))
+                                //&& v.Cells[2].Value.ToString().Equals(textBox2.Text.Trim())
+                                && v.Cells[2].Value.ToString().Equals(textBox3.Text.Trim())
+                                //&& v.Cells[4].Value.ToString().Equals(textBox14.Text.Trim())
+                                && v.Cells[3].Value.ToString().Equals(textBox16.Text.Trim()))
                                 count++;
                         }
                     }
-                    if (count == 1)
+                    if (count >= 1)
                     {
                         MessageBox.Show("已存在相同数据");
                         return;
@@ -203,10 +215,10 @@ namespace SharpGLWinformsApplication1
 
                 sql = "insert into  CrackInfo  values('" + Convert.ToDouble(textBox1.Text.Trim()).ToString() + "'," +
                     "'" + Convert.ToDouble(textBox15.Text.Trim()).ToString() + "'," +
-                   "'" + Convert.ToDouble(textBox2.Text.Trim()).ToString() + "'," +
+                   //"'" + Convert.ToDouble(textBox2.Text.Trim()).ToString() + "'," +
                    "'" + Convert.ToDouble(textBox3.Text.Trim()).ToString() + "'," +
-                   "'" + Convert.ToDouble(textBox14.Text.Trim()).ToString() + "'," +
-                   "'" + Convert.ToDouble(textBox16.Text.Trim()).ToString() + "')";
+                   //"'" + Convert.ToDouble(textBox14.Text.Trim()).ToString() + "'," +
+                   "'" + Convert.ToDouble(textBox16.Text.Trim()).ToString() + "',0)";
                 conn = new SqlConnection(ConnectionString);
                 cmd = new SqlCommand(sql, conn);
                 conn.Open();
@@ -242,10 +254,10 @@ namespace SharpGLWinformsApplication1
 
                 string sql = "delete from  CrackInfo where [StartPoint X(°)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value + "'" +
                     "and [StartPoint Y(°)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value + "'" +
-                     "and [CrackWidth(mm)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value + "'" +
-                      "and [CrackDepth(mm)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value + "'" +
-                       "and [CrackAngle   (°)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value + "'" +
-                        "and [CrackLength(mm)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[5].Value + "'";
+                     //"and [CrackWidth(mm)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value + "'" +
+                      "and [CrackDepth(mm)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value + "'" +
+                       //"and [CrackAngle   (°)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value + "'" +
+                        "and [CrackLength(mm)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value + "'";
                 //cmd.Connection = conn;
 
                 cmd = new SqlCommand(sql, conn);
@@ -280,9 +292,9 @@ namespace SharpGLWinformsApplication1
         private void button3_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
-            textBox2.Text = "";
+            //textBox2.Text = "";
             textBox3.Text = "";
-            textBox14.Text = "";
+            //textBox14.Text = "";
             textBox15.Text = "";
             textBox16.Text = "";
             conn = new SqlConnection(ConnectionString);
@@ -297,9 +309,9 @@ namespace SharpGLWinformsApplication1
         private void button6_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
-            textBox2.Text = "";
+            //textBox2.Text = "";
             textBox3.Text = "";
-            textBox14.Text = "";
+            //textBox14.Text = "";
             textBox15.Text = "";
             textBox16.Text = "";
         }
@@ -324,24 +336,31 @@ namespace SharpGLWinformsApplication1
             g.DrawLine(Pens.Red, new Point(500,250),new Point(490,240));
             g.DrawLine(Pens.Red, new Point(500,250),new Point(490,260));
 
-            int zuobiao = 0;
-            for (int x = 0; x < 50; x++)
+            
+            for (int x = 0; x < 500; x++)
             {
 
-                g.DrawLine(Pens.Red, new Point(250, x* 10), new Point(255, x * 10));
-
-                g.DrawLine(Pens.Red, new Point( x * 10,250), new Point(x * 10,245));
-
-
-                if (zuobiao % 5 == 0)
+                if (x<=250&&(250-x)% 31 == 0)
                 {
-                    if (-x + 25 != 0)
+                    g.DrawLine(Pens.Red, new Point(250, x), new Point(255, x ));
+
+                    g.DrawLine(Pens.Red, new Point(x , 250), new Point(x, 245));
+                    if (-x + 250 != 0)
                     {
-                        g.DrawString(Convert.ToString(-x + 25), new Font("微软雅黑", 7), Brushes.Red, 225, x * 10 - 5);
+                        g.DrawString(Convert.ToString((250-x)/31), new Font("微软雅黑", 7), Brushes.Red, 225, x - 5);
                     }
-                    g.DrawString(Convert.ToString(x- 25), new Font("微软雅黑", 7), Brushes.Red, x * 10 , 250);
+                    g.DrawString(Convert.ToString(-(250 - x) /31), new Font("微软雅黑", 7), Brushes.Red, x, 250);
+
+                }else if((x-250)%31==0){
+                    g.DrawLine(Pens.Red, new Point(250, x), new Point(255, x));
+                    g.DrawLine(Pens.Red, new Point(x, 250), new Point(x , 245));
+                    if (-x + 250 != 0)
+                    {
+                        g.DrawString(Convert.ToString(-(x-250) / 31), new Font("微软雅黑", 7), Brushes.Red, 225, x  - 5);
+                    }
+                    g.DrawString(Convert.ToString((x-250) /31), new Font("微软雅黑", 7), Brushes.Red, x , 250);
+               
                 }
-                zuobiao++;
 
             }
                 //Rectangle ellipseRec=new Rectangle(-5,-5,5,5);
@@ -357,16 +376,16 @@ namespace SharpGLWinformsApplication1
                 DrawCircle(g, Position[i, 0], Position[i, 1], Convert.ToString(i + 1), pencolor[i]);
             }
         }
-        private void DrawCircle(Graphics g, int x, int y,string s,int pencolor)
+        private void DrawCircle(Graphics g, float x, float y,string s,int pencolor)
         {
-            x+=250;
-            y=-y+250;
+            x=x*31+250;
+            y=-y*31+250;
             g.TranslateTransform(x, y);
             Pen IPen = new Pen(Color.Blue, 3);
             if (pencolor == 0)
             {
                 IPen.Color = Color.Blue;
-                g.DrawEllipse(IPen, -20, -20, 20, 20);
+                g.DrawEllipse(IPen, -10, -10, 10, 10);
                 //pictureBox1.Refresh();
                 g.DrawString(s, new Font("微软雅黑", 18), Brushes.Blue, 0, -20);
 
@@ -388,19 +407,6 @@ namespace SharpGLWinformsApplication1
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int i = dataGridView1.CurrentRow.Index;
-            //                object i=dataGridView1.CurrentCell.Value;
-            //object j = dataGridView2.CurrentRow.Cells["ID"].Value;  //获取当前行的ID值
-            //object S_F = dataGridView2.CurrentRow.Cells["已修复"].Value;
-            //if (Convert.ToString(S_F)=="否")
-            //{
-            //    var result= MessageBox.Show("            是否此裂纹已修复：","修改" ,MessageBoxButtons.YesNo);
-            //    if (DialogResult.Yes == result)
-            //    {
-            //        dataGridView2.CurrentRow.Cells["已修复"].Value="是";
-            //    }
-            //}
-            //label1.Text = Convert.ToString(j);
-            //int id = Convert.ToInt32(j)-1;
             for (int c = 0; c < dataGridView1.Rows.Count; c++)
             {
                 if (c == i)
@@ -413,7 +419,52 @@ namespace SharpGLWinformsApplication1
                 }
             }
             pictureBox1.Refresh();
+            //如果选中修复一行，修复改为1
+            if (dataGridView1.CurrentCell.ColumnIndex == 4)
+            {
+                object ob = Convert.ToInt32(dataGridView1.CurrentCell.Value);
+                if ((int)ob != 1)
+                {
+                    if (MessageBox.Show("此裂纹未修复='0'，是否修改为已修复='1'", "修复", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    {
+                        sql = "update CrackInfo set repair=1 where [StartPoint X(°)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value + "'" +
+                        "and [StartPoint Y(°)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value + "'" +
+                            //"and [CrackWidth(mm)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value + "'" +
+                          "and [CrackDepth(mm)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value + "'" +
+                            //"and [CrackAngle   (°)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value + "'" +
+                            "and [CrackLength(mm)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value + "'";
+                        conn = new SqlConnection(ConnectionString);
+                        cmd = new SqlCommand(sql, conn);
+                        conn.Open();
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                            conn.Close();
+                            MessageBox.Show("数据更新成功");
+                        }
+                        catch (Exception E)
+                        {
+                            MessageBox.Show("更新数据库时发生错误：" + E.Message + "", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        conn = new SqlConnection(ConnectionString);
+                        cmd = new SqlCommand();
+                        ds = new DataSet();
+                        sql = "SELECT * FROM  CrackInfo "; ;
+                        da = new SqlDataAdapter(sql, conn);
+                        da.Fill(ds, " CrackInfo");
+                        this.dataGridView1.DataSource = ds.Tables[" CrackInfo"].DefaultView;
+                    }
+
+                }
+            }
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+
     }
 }
 

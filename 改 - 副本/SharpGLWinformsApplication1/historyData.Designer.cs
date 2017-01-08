@@ -34,6 +34,10 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -60,7 +64,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("宋体", 12F);
-            this.label6.Location = new System.Drawing.Point(55, 107);
+            this.label6.Location = new System.Drawing.Point(37, 107);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(48, 16);
             this.label6.TabIndex = 35;
@@ -82,7 +86,7 @@
             "测点08",
             "测点09",
             "测点10"});
-            this.comboBox2.Location = new System.Drawing.Point(109, 103);
+            this.comboBox2.Location = new System.Drawing.Point(91, 103);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 24);
             this.comboBox2.TabIndex = 49;
@@ -96,7 +100,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "是",
             "否"});
-            this.comboBox1.Location = new System.Drawing.Point(514, 66);
+            this.comboBox1.Location = new System.Drawing.Point(496, 66);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(154, 24);
             this.comboBox1.TabIndex = 47;
@@ -104,7 +108,7 @@
             // numericUpDown2
             // 
             this.numericUpDown2.Font = new System.Drawing.Font("宋体", 12F);
-            this.numericUpDown2.Location = new System.Drawing.Point(612, 31);
+            this.numericUpDown2.Location = new System.Drawing.Point(594, 31);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             1,
             0,
@@ -119,7 +123,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("宋体", 12F);
-            this.label5.Location = new System.Drawing.Point(582, 36);
+            this.label5.Location = new System.Drawing.Point(564, 36);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(24, 16);
             this.label5.TabIndex = 45;
@@ -128,7 +132,7 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Font = new System.Drawing.Font("宋体", 12F);
-            this.numericUpDown1.Location = new System.Drawing.Point(514, 31);
+            this.numericUpDown1.Location = new System.Drawing.Point(496, 31);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             1,
             0,
@@ -142,7 +146,7 @@
             // dateTimePicker2
             // 
             this.dateTimePicker2.Font = new System.Drawing.Font("宋体", 12F);
-            this.dateTimePicker2.Location = new System.Drawing.Point(149, 65);
+            this.dateTimePicker2.Location = new System.Drawing.Point(131, 65);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(207, 26);
             this.dateTimePicker2.TabIndex = 43;
@@ -151,7 +155,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 12F);
-            this.label4.Location = new System.Drawing.Point(55, 70);
+            this.label4.Location = new System.Drawing.Point(37, 70);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 16);
             this.label4.TabIndex = 42;
@@ -160,7 +164,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Font = new System.Drawing.Font("宋体", 12F);
-            this.dateTimePicker1.Location = new System.Drawing.Point(149, 31);
+            this.dateTimePicker1.Location = new System.Drawing.Point(131, 31);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(207, 26);
             this.dateTimePicker1.TabIndex = 41;
@@ -169,7 +173,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 12F);
-            this.label3.Location = new System.Drawing.Point(404, 70);
+            this.label3.Location = new System.Drawing.Point(386, 70);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(88, 16);
             this.label3.TabIndex = 39;
@@ -179,7 +183,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 12F);
-            this.label2.Location = new System.Drawing.Point(404, 36);
+            this.label2.Location = new System.Drawing.Point(386, 36);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 16);
             this.label2.TabIndex = 38;
@@ -189,7 +193,7 @@
             // 
             this.Rwrite.Font = new System.Drawing.Font("宋体", 12F);
             this.Rwrite.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Rwrite.Location = new System.Drawing.Point(730, 95);
+            this.Rwrite.Location = new System.Drawing.Point(712, 95);
             this.Rwrite.Name = "Rwrite";
             this.Rwrite.Size = new System.Drawing.Size(75, 30);
             this.Rwrite.TabIndex = 48;
@@ -200,7 +204,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("宋体", 12F);
-            this.button1.Location = new System.Drawing.Point(730, 31);
+            this.button1.Location = new System.Drawing.Point(712, 31);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 30);
             this.button1.TabIndex = 40;
@@ -210,8 +214,12 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
@@ -221,17 +229,17 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.Location = new System.Drawing.Point(26, 402);
+            this.dataGridView1.Location = new System.Drawing.Point(8, 133);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
-            this.dataGridView1.Size = new System.Drawing.Size(811, 250);
+            this.dataGridView1.Size = new System.Drawing.Size(811, 241);
             this.dataGridView1.TabIndex = 36;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("宋体", 12F);
-            this.label7.Location = new System.Drawing.Point(55, 33);
+            this.label7.Location = new System.Drawing.Point(37, 33);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(88, 16);
             this.label7.TabIndex = 50;
@@ -239,11 +247,12 @@
             // 
             // chart1
             // 
+            this.chart1.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
             chartArea1.Name = "ChartArea1";
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(26, 133);
+            this.chart1.Location = new System.Drawing.Point(8, 380);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
@@ -261,9 +270,29 @@
             series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
             series3.Legend = "Legend1";
             series3.Name = "Series3";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Legend = "Legend1";
+            series4.Name = "Series4";
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series5.Legend = "Legend1";
+            series5.Name = "Series5";
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series6.Legend = "Legend1";
+            series6.Name = "Series6";
+            series7.ChartArea = "ChartArea1";
+            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series7.Legend = "Legend1";
+            series7.Name = "Series7";
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
             this.chart1.Series.Add(series3);
+            this.chart1.Series.Add(series4);
+            this.chart1.Series.Add(series5);
+            this.chart1.Series.Add(series6);
+            this.chart1.Series.Add(series7);
             this.chart1.Size = new System.Drawing.Size(811, 263);
             this.chart1.TabIndex = 51;
             this.chart1.Text = "chart1";
@@ -288,8 +317,9 @@
             this.Controls.Add(this.Rwrite);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
+            this.Location = new System.Drawing.Point(10, 10);
             this.Name = "historyData";
-            this.Size = new System.Drawing.Size(850, 660);
+            this.Size = new System.Drawing.Size(830, 640);
             this.Load += new System.EventHandler(this.historyData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

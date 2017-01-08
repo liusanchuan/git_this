@@ -83,6 +83,36 @@ namespace SharpGLWinformsApplication1.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap android_browser_24px_1068289_easyicon_net {
+            get {
+                object obj = ResourceManager.GetObject("android_browser_24px_1068289_easyicon.net", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap android_monitor_24px_1068300_easyicon_net {
+            get {
+                object obj = ResourceManager.GetObject("android_monitor_24px_1068300_easyicon.net", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap aurorasoftworks_quadrant_ui_standard_24px_1068318_easyicon_net {
+            get {
+                object obj = ResourceManager.GetObject("aurorasoftworks_quadrant_ui_standard_24px_1068318_easyicon.net", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap CengCi {
             get {
                 object obj = ResourceManager.GetObject("CengCi", resourceCulture);
@@ -93,9 +123,49 @@ namespace SharpGLWinformsApplication1.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
+        internal static System.Drawing.Bitmap close_24px_1199932_easyicon_net {
+            get {
+                object obj = ResourceManager.GetObject("close_24px_1199932_easyicon.net", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap close_48px_1199932_easyicon_net {
+            get {
+                object obj = ResourceManager.GetObject("close_48px_1199932_easyicon.net", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
         internal static System.Drawing.Bitmap liewnekuozhan {
             get {
                 object obj = ResourceManager.GetObject("liewnekuozhan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap miui_control_panel_24px_1068376_easyicon_net {
+            get {
+                object obj = ResourceManager.GetObject("miui_control_panel_24px_1068376_easyicon.net", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap org_zwanoo_android_speedtest_24px_1068411_easyicon_net {
+            get {
+                object obj = ResourceManager.GetObject("org_zwanoo_android_speedtest_24px_1068411_easyicon.net", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

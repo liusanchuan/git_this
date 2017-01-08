@@ -14,6 +14,7 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>发布\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -121,35 +121,11 @@
       <DependentUpon>Main_Form.cs</DependentUpon>
     </Compile>
     <Compile Include="HistoryList.cs" />
-    <Compile Include="FlawAssess.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FlawAssess.Designer.cs">
-      <DependentUpon>FlawAssess.cs</DependentUpon>
-    </Compile>
-    <Compile Include="IndexLimitValue.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="IndexLimitValue.Designer.cs">
-      <DependentUpon>IndexLimitValue.cs</DependentUpon>
-    </Compile>
     <Compile Include="JudgmentMatrix.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="JudgmentMatrix.Designer.cs">
       <DependentUpon>JudgmentMatrix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DataRearch.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DataRearch.Designer.cs">
-      <DependentUpon>DataRearch.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LieWenKuoZhanSuLv.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="LieWenKuoZhanSuLv.Designer.cs">
-      <DependentUpon>LieWenKuoZhanSuLv.cs</DependentUpon>
     </Compile>
     <Compile Include="LiShuHanShu.cs">
       <SubType>Form</SubType>
@@ -159,54 +135,18 @@
     </Compile>
     <Compile Include="Models\Limit.cs" />
     <Compile Include="CommonFunc\SaveFileThread.cs" />
-    <Compile Include="DataAdd.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DataAdd.Designer.cs">
-      <DependentUpon>DataAdd.cs</DependentUpon>
-    </Compile>
     <Compile Include="CommonFunc\FileOperate.cs" />
     <Compile Include="Models\RealTimeMonitoringModel.cs" />
-    <Compile Include="MyMainPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MyMainPage.Designer.cs">
-      <DependentUpon>MyMainPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NewJudgment.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NewJudgment.Designer.cs">
-      <DependentUpon>NewJudgment.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="RealTimeMonitoring.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RealTimeMonitoring.Designer.cs">
-      <DependentUpon>RealTimeMonitoring.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ReliabilityAssess.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ReliabilityAssess.Designer.cs">
-      <DependentUpon>ReliabilityAssess.cs</DependentUpon>
     </Compile>
     <Compile Include="AssessSoftware.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AssessSoftware.Designer.cs">
       <DependentUpon>AssessSoftware.cs</DependentUpon>
-    </Compile>
-    <Compile Include="SharpGLForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SharpGLForm.Designer.cs">
-      <DependentUpon>SharpGLForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -216,12 +156,7 @@
     <Compile Include="ReliabilityAssessResult.Designer.cs">
       <DependentUpon>ReliabilityAssessResult.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainPage.Designer.cs">
-      <DependentUpon>MainPage.cs</DependentUpon>
-    </Compile>
+    <Compile Include="sqlConnection.cs" />
     <EmbeddedResource Include="adddata.resx">
       <DependentUpon>adddata.cs</DependentUpon>
     </EmbeddedResource>
@@ -237,41 +172,14 @@
     <EmbeddedResource Include="realiable.resx">
       <DependentUpon>realiable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DataAdd.resx">
-      <DependentUpon>DataAdd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FlawAssess.resx">
-      <DependentUpon>FlawAssess.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Main_Form.resx">
       <DependentUpon>Main_Form.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="IndexLimitValue.resx">
-      <DependentUpon>IndexLimitValue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="JudgmentMatrix.resx">
       <DependentUpon>JudgmentMatrix.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DataRearch.resx">
-      <DependentUpon>DataRearch.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="LieWenKuoZhanSuLv.resx">
-      <DependentUpon>LieWenKuoZhanSuLv.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="LiShuHanShu.resx">
       <DependentUpon>LiShuHanShu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MyMainPage.resx">
-      <DependentUpon>MyMainPage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NewJudgment.resx">
-      <DependentUpon>NewJudgment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RealTimeMonitoring.resx">
-      <DependentUpon>RealTimeMonitoring.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReliabilityAssess.resx">
-      <DependentUpon>ReliabilityAssess.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AssessSoftware.resx">
       <DependentUpon>AssessSoftware.cs</DependentUpon>
@@ -281,22 +189,16 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="ClassDiagram2.cd" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Resources\FlawAssess.resx" />
-    <EmbeddedResource Include="SharpGLForm.resx">
-      <DependentUpon>SharpGLForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ReliabilityAssessResult.resx">
       <DependentUpon>ReliabilityAssessResult.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainPage.resx">
-      <DependentUpon>MainPage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -341,6 +243,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="docment\Lishudu.txt" />
+    <None Include="logo\android_browser_24px_1068289_easyicon.net.png" />
+    <None Include="logo\android_monitor_24px_1068300_easyicon.net.png" />
+    <None Include="logo\aurorasoftworks_quadrant_ui_standard_24px_1068318_easyicon.net.png" />
+    <None Include="logo\miui_control_panel_24px_1068376_easyicon.net.png" />
+    <None Include="logo\org_zwanoo_android_speedtest_24px_1068411_easyicon.net.png" />
+    <None Include="logo\close_48px_1199932_easyicon.net.png" />
+    <None Include="logo\close_24px_1199932_easyicon.net.png" />
     <Content Include="Resources\126.jpg" />
     <Content Include="Resources\historydata.xml">
       <SubType>Designer</SubType>

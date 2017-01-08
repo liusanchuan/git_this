@@ -118,22 +118,43 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="liewnekuozhan" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\liewnekuozhan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="android_browser_24px_1068289_easyicon.net" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\logo\android_browser_24px_1068289_easyicon.net.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close_48px_1199932_easyicon.net" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\logo\close_48px_1199932_easyicon.net.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="android_monitor_24px_1068300_easyicon.net" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\logo\android_monitor_24px_1068300_easyicon.net.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="加原公式" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\加原公式.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="126" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\126.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1261" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\126.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="加原公式1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\加原公式.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="CengCi" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\CengCi.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="加原公式1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\加原公式.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="126" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\126.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="miui_control_panel_24px_1068376_easyicon.net" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\logo\miui_control_panel_24px_1068376_easyicon.net.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="1261" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\126.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="liewnekuozhan" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\liewnekuozhan.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="aurorasoftworks_quadrant_ui_standard_24px_1068318_easyicon.net" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\logo\aurorasoftworks_quadrant_ui_standard_24px_1068318_easyicon.net.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="org_zwanoo_android_speedtest_24px_1068411_easyicon.net" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\logo\org_zwanoo_android_speedtest_24px_1068411_easyicon.net.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="close_24px_1199932_easyicon.net" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\logo\close_24px_1199932_easyicon.net.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

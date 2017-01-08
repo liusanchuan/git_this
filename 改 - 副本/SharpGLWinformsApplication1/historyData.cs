@@ -21,7 +21,10 @@ namespace SharpGLWinformsApplication1
 
 
 
-        private string ConnectionString = "server=.;database=PlatformFlawBase;Integrated Security=SSPI;";
+        //private string ConnectionString = "server=.;database=PlatformFlawBase;Integrated Security=SSPI;";
+
+        private string ConnectionString=null;
+        
         private SqlConnection conn = null;
         //private SqlCommand cmd = null;
         private string sql = null;
@@ -40,6 +43,8 @@ namespace SharpGLWinformsApplication1
             //ConnectionString = "Data Source=MS-20160121SCPS;Initial Catalog=PlatformFlawBase;"
                  //+ "Persist Security Info=True;User ID=sa;Password=zf19891014";
             ds = new DataSet();
+            sqlConnection sqlstring = new sqlConnection();
+            ConnectionString = sqlstring.getconn();
             conn = new SqlConnection(ConnectionString);
             conn.Open();
             sql = "SELECT * FROM LData";
@@ -79,29 +84,29 @@ namespace SharpGLWinformsApplication1
            }
 
 
-            //曲线程序
-           Double[] series1 = new Double[100];
-           Double[] series2 = new Double[100];
-           Double[] series3 = new Double[100];
+           // //曲线程序
+           //Double[] series1 = new Double[100];
+           //Double[] series2 = new Double[100];
+           //Double[] series3 = new Double[100];
 
-           int[] X = new int[100];
-           for (int F = 0; F < dataGridView1.Rows.Count; F++)
-           {
-               //DataRow da = ds.Tables[0].Rows[F];          //可以按照行row[0],列colum[0],第二列第一行colum[2][1]来取，所取得为一个datarow数组，然后再取此数组中的某一行            
-               //series1[F] = Convert.ToDouble(da[0]);
-               series1[F] = Convert.ToDouble(dataGridView1.Rows[F].Cells[3].Value);
-               series2[F] = Convert.ToDouble(dataGridView1.Rows[F].Cells[4].Value);
-               series3[F] = Convert.ToDouble(dataGridView1.Rows[F].Cells[5].Value);
+           //int[] X = new int[100];
+           //for (int F = 0; F < dataGridView1.Rows.Count; F++)
+           //{
+           //    //DataRow da = ds.Tables[0].Rows[F];          //可以按照行row[0],列colum[0],第二列第一行colum[2][1]来取，所取得为一个datarow数组，然后再取此数组中的某一行            
+           //    //series1[F] = Convert.ToDouble(da[0]);
+           //    series1[F] = Convert.ToDouble(dataGridView1.Rows[F].Cells[3].Value);
+           //    series2[F] = Convert.ToDouble(dataGridView1.Rows[F].Cells[4].Value);
+           //    series3[F] = Convert.ToDouble(dataGridView1.Rows[F].Cells[5].Value);
 
-               X[F] = F;
-           }
-           //chart1.ChartAreas[0].AxisY.Minimum = 28.35;
-           chart1.ChartAreas[0].AxisX.Maximum = 30;
+           //    X[F] = F;
+           //}
+           ////chart1.ChartAreas[0].AxisY.Minimum = 28.35;
+           //chart1.ChartAreas[0].AxisX.Maximum = 30;
 
 
-           chart1.Series[0].Points.DataBindXY(X, series1);
-           chart1.Series[1].Points.DataBindXY(X, series2);
-           chart1.Series[2].Points.DataBindXY(X, series3);
+           //chart1.Series[0].Points.DataBindXY(X, series1);
+           //chart1.Series[1].Points.DataBindXY(X, series2);
+           //chart1.Series[2].Points.DataBindXY(X, series3);
 
         }
 
@@ -296,6 +301,41 @@ namespace SharpGLWinformsApplication1
             {
                 dataGridView1.Columns[12].Visible = true;
                 dataGridView1.Columns[22].Visible = true;
+            }
+
+            //chart1.Series.Clear();
+            int seriesNum = 0;
+            Double[][] series=new Double[10][];
+
+
+            
+            for (i = 3; i < 23; i++)
+            {
+                if (dataGridView1.Columns[i].Visible == true)
+                {
+                    
+
+                    //曲线程序
+                    //Double[] series1 = new Double[100];
+                    //Double[] series2 = new Double[100];
+                    //Double[] series3 = new Double[100];
+                    series[seriesNum] = new Double[100];
+                    int[] X = new int[100];
+                    for (int F = 0; F < dataGridView1.Rows.Count; F++)
+                    {
+                        //DataRow da = ds.Tables[0].Rows[F];          //可以按照行row[0],列colum[0],第二列第一行colum[2][1]来取，所取得为一个datarow数组，然后再取此数组中的某一行            
+                        //series1[F] = Convert.ToDouble(da[0]);
+                        series[seriesNum][F] = Convert.ToDouble(dataGridView1.Rows[F].Cells[i].Value);
+                        X[F] = F;
+                    }
+                    //chart1.ChartAreas[0].AxisY.Minimum = 28.35;
+                    chart1.ChartAreas[0].AxisX.Maximum = 30;
+
+
+                    chart1.Series[seriesNum].Points.DataBindXY(X, series[seriesNum]);
+                    seriesNum++;
+                }
+                
             }
 
         }

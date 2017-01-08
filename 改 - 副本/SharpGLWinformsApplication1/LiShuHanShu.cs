@@ -210,7 +210,7 @@ namespace SharpGLWinformsApplication1
             int[] X4 = new int[] { 40, 30, 20, 10 };
             int[] X5 = new int[] { 20, 10, 0, 0 };
 
-            double[] series1 = new double[] { 0, 10, 10, 0 };
+            double[] series1 = new double[] { 0, 1, 1, 0 };
 
             chart1.Series[0].Points.DataBindXY(X1, series1);
             chart1.Series[1].Points.DataBindXY(X2, series1);

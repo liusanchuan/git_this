@@ -34,7 +34,7 @@ namespace SharpGLWinformsApplication1
 
         private void groupBox1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            e.Graphics.Clear(this.BackColor);
+            //e.Graphics.Clear(this.BackColor);
 
         }
 

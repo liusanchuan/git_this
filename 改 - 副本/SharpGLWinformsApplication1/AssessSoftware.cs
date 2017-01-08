@@ -62,7 +62,7 @@ namespace SharpGLWinformsApplication1
 
 
 
-                MainPage Zhujiemian = new MainPage();
+                Main_Form Zhujiemian = new Main_Form();
                 Zhujiemian.ShowDialog();
                 Zhujiemian.Dispose();
                 
@@ -88,11 +88,7 @@ namespace SharpGLWinformsApplication1
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            MyMainPage myform = new MyMainPage();
-            myform.Show();
-        }
+
 
         private void button4_Click(object sender, EventArgs e)
         {

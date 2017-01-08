@@ -399,7 +399,7 @@ namespace SharpGLWinformsApplication1
 
         private void ReliabilityAssess_Load(object sender, EventArgs e)
         {
-            IndexLimitValue ILV = new IndexLimitValue();
+            //IndexLimitValue ILV = new IndexLimitValue();
             //this.textBox11.Text = ILV.TextBox11Text;
             //this.textBox12.Text = ILV.TextBox12Text;
             //this.textBox13.Text = ILV.TextBox13Text;
@@ -623,7 +623,7 @@ namespace SharpGLWinformsApplication1
 
         private void realiable_Load(object sender, EventArgs e)
         {
-            IndexLimitValue ILV = new IndexLimitValue();
+            //IndexLimitValue ILV = new IndexLimitValue();
             //this.textBox11.Text = ILV.TextBox11Text;
             //this.textBox12.Text = ILV.TextBox12Text;
             //this.textBox13.Text = ILV.TextBox13Text;

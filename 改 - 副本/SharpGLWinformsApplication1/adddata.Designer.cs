@@ -50,7 +50,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(29, 109);
+            this.label1.Location = new System.Drawing.Point(18, 109);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 16);
             this.label1.TabIndex = 2;
@@ -61,7 +61,7 @@
             this.AssessData.AutoSize = true;
             this.AssessData.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.AssessData.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.AssessData.Location = new System.Drawing.Point(29, 70);
+            this.AssessData.Location = new System.Drawing.Point(18, 70);
             this.AssessData.Name = "AssessData";
             this.AssessData.Size = new System.Drawing.Size(72, 16);
             this.AssessData.TabIndex = 1;
@@ -70,7 +70,7 @@
             // AssessNumber
             // 
             this.AssessNumber.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.AssessNumber.Location = new System.Drawing.Point(123, 66);
+            this.AssessNumber.Location = new System.Drawing.Point(112, 66);
             this.AssessNumber.Name = "AssessNumber";
             this.AssessNumber.Size = new System.Drawing.Size(96, 26);
             this.AssessNumber.TabIndex = 1;
@@ -86,7 +86,7 @@
             this.LaunchParameter.Controls.Add(this.label4);
             this.LaunchParameter.Controls.Add(this.AssessNumber);
             this.LaunchParameter.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.LaunchParameter.Location = new System.Drawing.Point(204, 111);
+            this.LaunchParameter.Location = new System.Drawing.Point(193, 111);
             this.LaunchParameter.Name = "LaunchParameter";
             this.LaunchParameter.Size = new System.Drawing.Size(442, 195);
             this.LaunchParameter.TabIndex = 7;
@@ -98,7 +98,7 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(225, 18);
+            this.dataGridView1.Location = new System.Drawing.Point(214, 18);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.Size = new System.Drawing.Size(211, 115);
@@ -107,7 +107,7 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("宋体", 12F);
-            this.textBox1.Location = new System.Drawing.Point(123, 145);
+            this.textBox1.Location = new System.Drawing.Point(112, 145);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(226, 26);
@@ -121,7 +121,7 @@
             this.YesOrNo.Items.AddRange(new object[] {
             "是",
             "否"});
-            this.YesOrNo.Location = new System.Drawing.Point(123, 106);
+            this.YesOrNo.Location = new System.Drawing.Point(112, 106);
             this.YesOrNo.Name = "YesOrNo";
             this.YesOrNo.Size = new System.Drawing.Size(96, 24);
             this.YesOrNo.TabIndex = 20;
@@ -131,7 +131,7 @@
             // 
             this.button4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.button4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button4.Location = new System.Drawing.Point(355, 145);
+            this.button4.Location = new System.Drawing.Point(344, 145);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(31, 26);
             this.button4.TabIndex = 17;
@@ -144,7 +144,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 12F);
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(28, 148);
+            this.label4.Location = new System.Drawing.Point(17, 148);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 16);
             this.label4.TabIndex = 12;
@@ -154,7 +154,7 @@
             // 
             this.Rwrite.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Rwrite.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Rwrite.Location = new System.Drawing.Point(515, 322);
+            this.Rwrite.Location = new System.Drawing.Point(504, 322);
             this.Rwrite.Name = "Rwrite";
             this.Rwrite.Size = new System.Drawing.Size(75, 34);
             this.Rwrite.TabIndex = 9;
@@ -166,7 +166,7 @@
             // 
             this.Add.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Add.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Add.Location = new System.Drawing.Point(296, 322);
+            this.Add.Location = new System.Drawing.Point(285, 322);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(75, 34);
             this.Add.TabIndex = 8;
@@ -181,7 +181,7 @@
             // button1
             // 
             this.button1.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.button1.Location = new System.Drawing.Point(204, 322);
+            this.button1.Location = new System.Drawing.Point(193, 322);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 10;
@@ -197,8 +197,9 @@
             this.Controls.Add(this.Rwrite);
             this.Controls.Add(this.Add);
             this.Controls.Add(this.button1);
+            this.Location = new System.Drawing.Point(10, 10);
             this.Name = "adddata";
-            this.Size = new System.Drawing.Size(850, 660);
+            this.Size = new System.Drawing.Size(830, 640);
             this.LaunchParameter.ResumeLayout(false);
             this.LaunchParameter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

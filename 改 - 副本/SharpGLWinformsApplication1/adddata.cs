@@ -20,7 +20,8 @@ namespace SharpGLWinformsApplication1
 
         //private string connStr = ConfigurationManager.ConnectionStrings["SharpGLWinformsApplication1.Properties.Settings.PlatformFlawBaseConnectionString"].ConnectionString;
         //private string connStr = "server=.;database=People;Integrated Security=SSPI;";
-        private string ConnectionString = "server=.;database=PlatformFlawBase;Integrated Security=SSPI;";
+
+        private string ConnectionString = null;
         private SqlConnection conn = null;
         private SqlCommand cmd = null;
         private string sql = null;
@@ -29,6 +30,8 @@ namespace SharpGLWinformsApplication1
         public adddata()
         {
             InitializeComponent();
+            sqlConnection sqls = new sqlConnection();
+            ConnectionString = sqls.getconn();
             conn = new SqlConnection(ConnectionString);
         }
         
@@ -122,7 +125,9 @@ namespace SharpGLWinformsApplication1
                 //table.Rows.Add(row);
             }
             dataGridView1.DataSource = table;
-            string str = "server=.;database=PlatformFlawBase;Integrated Security=SSPI;";
+            sqlConnection sqlstring = new sqlConnection();
+            //string str = "server=.;database=PlatformFlawBase;Integrated Security=SSPI;";
+            string str=sqlstring.getconn();
             SqlConnection con = new SqlConnection(str); //创建连接对象
             con.Open(); //打开连接
             SqlBulkCopy bulkcopy = new SqlBulkCopy(con);
