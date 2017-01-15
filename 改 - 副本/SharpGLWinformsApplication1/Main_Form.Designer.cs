@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.skinMenuStrip1 = new CCWin.SkinControl.SkinMenuStrip();
             this.可靠性评估ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,6 +38,9 @@
             this.扩展速率评估ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.历史数据查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.添加数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.skinMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,16 +49,29 @@
             this.groupBox1.AutoSize = true;
             this.groupBox1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 28);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(0);
-            this.groupBox1.Size = new System.Drawing.Size(855, 665);
+            this.groupBox1.Size = new System.Drawing.Size(850, 665);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox1_Paint);
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.DimGray;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(-5, -140);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(852, 835);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // button1
             // 
@@ -74,7 +91,7 @@
             // skinMenuStrip1
             // 
             this.skinMenuStrip1.AllowDrop = true;
-            this.skinMenuStrip1.Arrow = System.Drawing.Color.Black;
+            this.skinMenuStrip1.Arrow = System.Drawing.Color.Transparent;
             this.skinMenuStrip1.Back = System.Drawing.Color.White;
             this.skinMenuStrip1.BackColor = System.Drawing.Color.DimGray;
             this.skinMenuStrip1.BackgroundImage = global::SharpGLWinformsApplication1.Properties.Resources._1261;
@@ -117,7 +134,7 @@
             this.skinMenuStrip1.Location = new System.Drawing.Point(0, 0);
             this.skinMenuStrip1.Name = "skinMenuStrip1";
             this.skinMenuStrip1.RadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinMenuStrip1.Size = new System.Drawing.Size(855, 28);
+            this.skinMenuStrip1.Size = new System.Drawing.Size(850, 28);
             this.skinMenuStrip1.SkinAllColor = true;
             this.skinMenuStrip1.TabIndex = 4;
             this.skinMenuStrip1.Text = "skinMenuStrip1";
@@ -125,7 +142,6 @@
             this.skinMenuStrip1.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(228)))), ((int)(((byte)(236)))));
             this.skinMenuStrip1.TitleRadius = 4;
             this.skinMenuStrip1.TitleRadiusStyle = CCWin.SkinClass.RoundStyle.All;
-            this.skinMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.skinMenuStrip1_ItemClicked);
             // 
             // 可靠性评估ToolStripMenuItem
             // 
@@ -143,7 +159,7 @@
             this.裂纹快速评估ToolStripMenuItem.Image = global::SharpGLWinformsApplication1.Properties.Resources.miui_control_panel_24px_1068376_easyicon_net;
             this.裂纹快速评估ToolStripMenuItem.Name = "裂纹快速评估ToolStripMenuItem";
             this.裂纹快速评估ToolStripMenuItem.Size = new System.Drawing.Size(125, 24);
-            this.裂纹快速评估ToolStripMenuItem.Text = "裂纹快速评估";
+            this.裂纹快速评估ToolStripMenuItem.Text = "裂纹快速查找";
             this.裂纹快速评估ToolStripMenuItem.Click += new System.EventHandler(this.裂纹快速评估ToolStripMenuItem_Click);
             // 
             // 扩展速率评估ToolStripMenuItem
@@ -166,9 +182,20 @@
             // 
             this.添加数据ToolStripMenuItem.Image = global::SharpGLWinformsApplication1.Properties.Resources.aurorasoftworks_quadrant_ui_standard_24px_1068318_easyicon_net;
             this.添加数据ToolStripMenuItem.Name = "添加数据ToolStripMenuItem";
-            this.添加数据ToolStripMenuItem.Size = new System.Drawing.Size(97, 24);
-            this.添加数据ToolStripMenuItem.Text = "添加数据";
+            this.添加数据ToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
+            this.添加数据ToolStripMenuItem.Text = "管理员界面";
             this.添加数据ToolStripMenuItem.Click += new System.EventHandler(this.添加数据ToolStripMenuItem_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Gainsboro;
+            this.label1.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(220, 68);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(416, 56);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "欢迎使用此软件";
             // 
             // Main_Form
             // 
@@ -176,17 +203,20 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.ClientSize = new System.Drawing.Size(855, 693);
+            this.ClientSize = new System.Drawing.Size(850, 693);
             this.ControlBox = false;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.skinMenuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.skinMenuStrip1;
             this.Name = "Main_Form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main_Form";
-            this.Load += new System.EventHandler(this.Main_Form_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.skinMenuStrip1.ResumeLayout(false);
             this.skinMenuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -201,8 +231,10 @@
         private System.Windows.Forms.ToolStripMenuItem 裂纹快速评估ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 扩展速率评估ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 历史数据查询ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 添加数据ToolStripMenuItem;
         private CCWin.SkinControl.SkinMenuStrip skinMenuStrip1;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ToolStripMenuItem 添加数据ToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
     }
 }

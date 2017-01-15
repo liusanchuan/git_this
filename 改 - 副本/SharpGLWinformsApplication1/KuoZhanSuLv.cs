@@ -17,13 +17,21 @@ namespace SharpGLWinformsApplication1
         {
             InitializeComponent();
         }
-
-
-
         private void button1_Click(object sender, EventArgs e)
         {
-
+            sqlConnection sc = new sqlConnection();
+            string[] saveData = new string[]{
+                textBox1_D_Kth.Text.Trim().ToString(),
+                textBox2_E.Text.Trim().ToString(),
+                textBox3_KC_max.Text.Trim().ToString(),
+                textBox4_KC_min.Text.Trim().ToString(),
+                textBox5_Kc.Text.Trim().ToString(),
+                textBox1_a0.Text.Trim().ToString()
+            };
+            sc.Save_SQL_Data(saveData, "ExpandVelocity");
             //double E = 212000, D_kth = 37.6, Kc = 1, KCmax = 1, KCmin = 0, D_KC, D_K, R;
+
+
             double E = Convert.ToDouble(textBox2_E.Text);
             double D_kth = Convert.ToDouble(textBox1_D_Kth.Text),
                 Kc = Convert.ToDouble(textBox5_Kc.Text), 
@@ -49,95 +57,36 @@ namespace SharpGLWinformsApplication1
                 double s1 = H * (Math.Pow(E, 2) / 48 * Math.Pow(D_K + D_kth, -0.5) * Math.Pow((1 / D_K - 1 / ((1 - R) * Kc)), 1.5));
                 sum += s1;
             }
-            label1.Text = Convert.ToString(sum/0.01)+"\n------说明-----\n:此结构还可\n承受"+Convert.ToString((int)sum)+"次冲击";
-
-            XmlDocument doc = new XmlDocument();
-            doc.Load(@"E:\program\测评\改 - 副本\SharpGLWinformsApplication1\Resources\historydata.xml");
-
-            XmlElement root = doc.DocumentElement;
-
-             root.SelectNodes("Dome")[0].SelectNodes("D_Kth")[0].InnerText=textBox1_D_Kth.Text;
-             root.SelectNodes("Dome")[0].SelectNodes("E")[0].InnerText = textBox2_E.Text;
-             root.SelectNodes("Dome")[0].SelectNodes("KC_max")[0].InnerText=textBox3_KC_max.Text;
-            root.SelectNodes("Dome")[0].SelectNodes("KC_min")[0].InnerText=textBox4_KC_min.Text ;
-            root.SelectNodes("Dome")[0].SelectNodes("a0")[0].InnerText=textBox1_a0.Text ;
-            root.SelectNodes("Dome")[0].SelectNodes("Kc")[0].InnerText=textBox5_Kc.Text ;
-            doc.Save(@"E:\program\测评\改 - 副本\SharpGLWinformsApplication1\Resources\historydata.xml");
+            label1.Text = Convert.ToString(sum/0.01)+"\n------说明-----\n:此结构还可\n承受"+Convert.ToString((int)(sum/0.01))+"次冲击";
         }
 
-  
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void textBox1_D_Kth_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LieWenKuoZhanSuLv_Load(object sender, EventArgs e)
-        {
-
-            //double E = Convert.ToDouble(textBox2_E.Text);
-            //double D_kth = Convert.ToDouble(textBox1_D_Kth.Text),
-            //    Kc = Convert.ToDouble(textBox5_Kc.Text),
-            //    KCmax = Convert.ToDouble(textBox3_KC_max.Text),
-            //    KCmin = Convert.ToDouble(textBox4_KC_min.Text),
-            //    D_KC, D_K, R;
-
-            //R = KCmax / KCmin;
-            //double a0, a1; //积分上下
-            //a0 = Convert.ToDouble(textBox1_a0.Text);
-            XmlDocument doc = new XmlDocument();
-            doc.Load(@"E:\program\测评\改 - 副本\SharpGLWinformsApplication1\Resources\historydata.xml");
-            
-            XmlElement root = doc.DocumentElement;
-            textBox1_D_Kth.Text =root.SelectNodes("Dome")[0].SelectNodes("D_Kth")[0].InnerText;
-            textBox2_E.Text = root.SelectNodes("Dome")[0].SelectNodes("E")[0].InnerText;
-            textBox3_KC_max.Text = root.SelectNodes("Dome")[0].SelectNodes("KC_max")[0].InnerText;
-            textBox4_KC_min.Text = root.SelectNodes("Dome")[0].SelectNodes("KC_min")[0].InnerText;
-            textBox1_a0.Text = root.SelectNodes("Dome")[0].SelectNodes("a0")[0].InnerText;
-            textBox5_Kc.Text = root.SelectNodes("Dome")[0].SelectNodes("Kc")[0].InnerText;
-
-            label1.Text = root.InnerText;
-            label1.Text = root.SelectNodes("Dome")[0].SelectNodes("D_Kth")[0].InnerText;
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox2_E_TextChanged(object sender, EventArgs e)
+        private void KuoZhanSuLv_Load(object sender, EventArgs e)
         {
+            sqlConnection sc = new sqlConnection();
+            string[] ReadData = sc.Read_SQL_Data("ExpandVelocity");
+            if (ReadData[1] != null)
+            {
+                int i = 0;
+                try
+                {
+                    textBox1_D_Kth.Text = ReadData[i++];
+                    textBox2_E.Text = ReadData[i++];
+                    textBox3_KC_max.Text = ReadData[i++];
+                    textBox4_KC_min.Text = ReadData[i++];
+                    textBox5_Kc.Text = ReadData[i++];
+                    textBox1_a0.Text = ReadData[i++];
+                }
+                catch (Exception EE)
+                {
 
-        }
-
-        private void textBox3_KC_max_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox4_KC_min_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox5_Kc_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_a0_TextChanged(object sender, EventArgs e)
-        {
-
+                }
+            }
         }
     }
 }

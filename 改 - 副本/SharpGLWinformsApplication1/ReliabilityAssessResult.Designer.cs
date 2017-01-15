@@ -49,7 +49,7 @@
             // label
             // 
             this.label.AutoSize = true;
-            this.label.Location = new System.Drawing.Point(65, 49);
+            this.label.Location = new System.Drawing.Point(53, 52);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(0, 24);
             this.label.TabIndex = 0;
@@ -61,6 +61,7 @@
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(471, 207);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.Name = "ReliabilityAssessResult";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

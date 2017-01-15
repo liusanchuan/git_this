@@ -90,6 +90,18 @@
     <Compile Include="adddata.Designer.cs">
       <DependentUpon>adddata.cs</DependentUpon>
     </Compile>
+    <Compile Include="CanshuTU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CanshuTU.Designer.cs">
+      <DependentUpon>CanshuTU.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileFormat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileFormat.Designer.cs">
+      <DependentUpon>FileFormat.cs</DependentUpon>
+    </Compile>
     <Compile Include="historyData.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -107,6 +119,12 @@
     </Compile>
     <Compile Include="Liewenpinggu.Designer.cs">
       <DependentUpon>Liewenpinggu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="N_LiShuDu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="N_LiShuDu.Designer.cs">
+      <DependentUpon>N_LiShuDu.cs</DependentUpon>
     </Compile>
     <Compile Include="realiable.cs">
       <SubType>UserControl</SubType>
@@ -150,6 +168,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Register.Designer.cs">
+      <DependentUpon>Register.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReliabilityAssessResult.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +184,12 @@
     <EmbeddedResource Include="adddata.resx">
       <DependentUpon>adddata.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CanshuTU.resx">
+      <DependentUpon>CanshuTU.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileFormat.resx">
+      <DependentUpon>FileFormat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="historyData.resx">
       <DependentUpon>historyData.cs</DependentUpon>
     </EmbeddedResource>
@@ -168,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Liewenpinggu.resx">
       <DependentUpon>Liewenpinggu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="N_LiShuDu.resx">
+      <DependentUpon>N_LiShuDu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="realiable.resx">
       <DependentUpon>realiable.cs</DependentUpon>
@@ -193,6 +226,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Resources\FlawAssess.resx" />
+    <EmbeddedResource Include="Register.resx">
+      <DependentUpon>Register.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReliabilityAssessResult.resx">
       <DependentUpon>ReliabilityAssessResult.cs</DependentUpon>
     </EmbeddedResource>

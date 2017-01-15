@@ -15,14 +15,7 @@ namespace SharpGLWinformsApplication1
     public partial class Liewenpinggu : UserControl
     {
         int[,] Position = new int[100, 100];
-    //            {0,70},
-    //            {130,-85},
-    //            {-65,-150},
-    //            {135,165},
-    //            {0,0},
-    //{0,0},{0,0},{0,0}
-            //};
-        int CountT=4;    //表示现在有多少列数据，当增加时，多一条裂纹数据
+       int CountT=4;    //表示现在有多少列数据，当增加时，多一条裂纹数据
         int[] pencolor=new int[100];
 
         DataTable dt = new DataTable("Liewen");
@@ -73,12 +66,20 @@ namespace SharpGLWinformsApplication1
             //ds.Tables[0].Columns[0].ColumnName= "ID";
             dataGridView1.DataSource = ds.Tables[0].DefaultView;
             for(int number=0;number<dataGridView1.Rows.Count;number++){
-                Position[number, 0] = Convert.ToInt32(dataGridView1.Rows[number].Cells[0].Value);
-                Position[number, 1] = Convert.ToInt32(dataGridView1.Rows[number].Cells[1].Value);
+                Position[number, 0] = Convert.ToInt32(dataGridView1.Rows[number].Cells[0].Value)/1000;
+                Position[number, 1] = Convert.ToInt32(dataGridView1.Rows[number].Cells[1].Value)/1000;
             }
+            string[] titleName ={
+                                   "起点X坐标",
+                                   "起点Y坐标",
+                                    "裂纹深度",
+                                    "裂纹长度",
+                                    "是否已修复"
+                               };
             for (int i = 0; i < this.dataGridView1.Columns.Count; i++)
             {
                 this.dataGridView1.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+                this.dataGridView1.Columns[i].HeaderCell.Value = titleName[i];
             }
             
             conn.Close();
@@ -102,53 +103,30 @@ namespace SharpGLWinformsApplication1
                 sql = "SELECT * FROM  CrackInfo ";
                 string condition = "";
                 if (textBox1.Text.Trim() != "")
-                    condition = " [StartPoint X(°)] BETWEEN " + Convert.ToDouble(textBox1.Text) + "-1 AND " + Convert.ToDouble(textBox1.Text) + "+1";
+                    condition = " [StartPoint X(°)] BETWEEN " + Convert.ToDouble(textBox1.Text) + "-1000 AND " + Convert.ToDouble(textBox1.Text) + "+1000";
                 if (textBox15.Text.Trim() != "")
                 {
                     if (condition.Length > 0)
                     {
-                        condition += "AND [StartPoint Y(°)] BETWEEN " + Convert.ToDouble(textBox15.Text) + "-1 AND " + Convert.ToDouble(textBox15.Text) + "+1";
+                        condition += "AND [StartPoint Y(°)] BETWEEN " + Convert.ToDouble(textBox15.Text) + "-1000 AND " + Convert.ToDouble(textBox15.Text) + "+1000";
 
                     }
                     else
                     {
-                        condition = " [StartPoint Y(°)] BETWEEN " + Convert.ToDouble(textBox15.Text) + "-1 AND " + Convert.ToDouble(textBox15.Text) + "+1";
+                        condition = " [StartPoint Y(°)] BETWEEN " + Convert.ToDouble(textBox15.Text) + "-1000 AND " + Convert.ToDouble(textBox15.Text) + "+1000";
                     }
                 }
-                //if (textBox2.Text.Trim() != "")
-                //{
-                //    if (condition.Length > 0)
-                //    {
-                //        condition += "AND [CrackWidth(mm)] BETWEEN " + Convert.ToDouble(textBox2.Text) + "-5 AND " + Convert.ToDouble(textBox2.Text) + "+5";
-                //    }
-                //    else
-                //    {
-                //        condition = " [CrackWidth(mm)] BETWEEN " + Convert.ToDouble(textBox2.Text) + "-5 AND " + Convert.ToDouble(textBox2.Text) + "+5";
-                //    }
-
-                //}
                 if (textBox3.Text.Trim() != "")
                 {
                     if (condition.Length > 0)
                     {
-                        condition += "AND [CrackDepth(mm)] BETWEEN " + Convert.ToDouble(textBox3.Text) + "-1 AND " + Convert.ToDouble(textBox3.Text) + "+1";
+                        condition += "AND [CrackDepth(mm)] BETWEEN " + Convert.ToDouble(textBox3.Text) + "-5 AND " + Convert.ToDouble(textBox3.Text) + "+5";
                     }
                     else
                     {
-                        condition = " [CrackDepth(mm)] BETWEEN " + Convert.ToDouble(textBox3.Text) + "-1 AND " + Convert.ToDouble(textBox3.Text) + "+1";
+                        condition = " [CrackDepth(mm)] BETWEEN " + Convert.ToDouble(textBox3.Text) + "-5 AND " + Convert.ToDouble(textBox3.Text) + "+5";
                     }
                 }
-                //if (textBox14.Text.Trim() != "")
-                //{
-                //    if (condition.Length > 0)
-                //    {
-                //        condition += "AND [CrackAngle   (°)] BETWEEN " + Convert.ToDouble(textBox14.Text) + "-5 AND " + Convert.ToDouble(textBox14.Text) + "+5";
-                //    }
-                //    else
-                //    {
-                //        condition = " [CrackAngle   (°)] BETWEEN " + Convert.ToDouble(textBox14.Text) + "-5 AND " + Convert.ToDouble(textBox14.Text) + "+5";
-                //    }
-                //}
                 if (condition != "")
                     sql += " where " + condition;
                 da = new SqlDataAdapter(sql, conn);
@@ -181,7 +159,7 @@ namespace SharpGLWinformsApplication1
             var count = 0;
             if (conn.State != ConnectionState.Open)
                 conn.Close();
-            if(Convert.ToDouble(textBox1.Text.Trim())>=7.5||Convert.ToDouble(textBox1.Text.Trim())<=-7.5||Convert.ToDouble(textBox15.Text.Trim())>=7.5||Convert.ToDouble(textBox15.Text.Trim())<=-7.5){
+            if(Convert.ToDouble(textBox1.Text.Trim())>=7500||Convert.ToDouble(textBox1.Text.Trim())<=-7500||Convert.ToDouble(textBox15.Text.Trim())>=7500||Convert.ToDouble(textBox15.Text.Trim())<=-7500){
                 MessageBox.Show("所输入坐标信息超出范围");
                 textBox1.Text="";
                 textBox15.Text="";
@@ -347,18 +325,18 @@ namespace SharpGLWinformsApplication1
                     g.DrawLine(Pens.Red, new Point(x , 250), new Point(x, 245));
                     if (-x + 250 != 0)
                     {
-                        g.DrawString(Convert.ToString((250-x)/31), new Font("微软雅黑", 7), Brushes.Red, 225, x - 5);
+                        g.DrawString(Convert.ToString(1000*(250-x)/31), new Font("微软雅黑", 7), Brushes.Red, 225, x - 5);
                     }
-                    g.DrawString(Convert.ToString(-(250 - x) /31), new Font("微软雅黑", 7), Brushes.Red, x, 250);
+                    g.DrawString(Convert.ToString(-1000*(250 - x) /31), new Font("微软雅黑", 7), Brushes.Red, x, 250);
 
                 }else if((x-250)%31==0){
                     g.DrawLine(Pens.Red, new Point(250, x), new Point(255, x));
                     g.DrawLine(Pens.Red, new Point(x, 250), new Point(x , 245));
                     if (-x + 250 != 0)
                     {
-                        g.DrawString(Convert.ToString(-(x-250) / 31), new Font("微软雅黑", 7), Brushes.Red, 225, x  - 5);
+                        g.DrawString(Convert.ToString(-1000*(x-250) / 31), new Font("微软雅黑", 7), Brushes.Red, 225, x  - 5);
                     }
-                    g.DrawString(Convert.ToString((x-250) /31), new Font("微软雅黑", 7), Brushes.Red, x , 250);
+                    g.DrawString(Convert.ToString(1000*(x-250) /31), new Font("微软雅黑", 7), Brushes.Red, x , 250);
                
                 }
 
@@ -367,6 +345,11 @@ namespace SharpGLWinformsApplication1
 
                 //g.DrawEllipse(P, ellipseRec);
                 //Random random=new Random();
+            for (int number = 0; number < dataGridView1.Rows.Count; number++)
+            {
+                Position[number, 0] = Convert.ToInt32(dataGridView1.Rows[number].Cells[0].Value) / 1000;
+                Position[number, 1] = Convert.ToInt32(dataGridView1.Rows[number].Cells[1].Value) / 1000;
+            }
                 draw_4_circle(g);
         }
         private void draw_4_circle(Graphics g)

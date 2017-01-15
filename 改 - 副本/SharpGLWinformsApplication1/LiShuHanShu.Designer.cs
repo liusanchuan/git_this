@@ -184,6 +184,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.chart1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "LiShuHanShu";
             this.Text = "LiShuHanShu";
             this.Load += new System.EventHandler(this.LiShuHanShu_Load);

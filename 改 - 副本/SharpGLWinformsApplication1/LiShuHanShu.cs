@@ -43,22 +43,7 @@ namespace SharpGLWinformsApplication1
             {
                 dt.Columns.Add(name[i]);
             }
-            //dt.Columns.Add("应力");
-            //dt.Columns.Add("震动");
-            //dt.Columns.Add("源头载荷");
-            //dt.Columns.Add("形变");
-            //dt.Columns.Add("裂纹");
-            //dt.Columns.Add("材料参数");
-            //dt.Columns.Add("涂层烧蚀量");
-            //dt.Columns.Add("传动阻力");
-            //dt.Columns.Add("电机扭矩");
-            //dt.Columns.Add("制动力矩");
-            //dt.Columns.Add("液压及电控");
-
-            //dataGridView1.AllowUserToResizeRows = false;
-            //dataGridView1.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
             DataRow dt1 = dt.NewRow();
-            
             DataRow dt2 = dt.NewRow();
             DataRow dt3 = dt.NewRow();
             DataRow dt4 = dt.NewRow();
@@ -72,7 +57,6 @@ namespace SharpGLWinformsApplication1
             dt4[i] = 40 ;
             dt5[i] = 20;
             dt6[i] = 0 ;
-
             }
             //add 6 rows
             dt.Rows.Add(dt1);
@@ -91,29 +75,13 @@ namespace SharpGLWinformsApplication1
         }
         public void ReadXmlToDataGrid()
         {
-
             DataTable dt=new DataTable();
 
             for (int i = 0; i < name.Length; i++)
             {
                 dt.Columns.Add(name[i]);
             }
-            //dt.Columns.Add("应力");
-            //dt.Columns.Add("震动");
-            //dt.Columns.Add("源头载荷");
-            //dt.Columns.Add("形变");
-            //dt.Columns.Add("裂纹");
-            //dt.Columns.Add("材料参数");
-            //dt.Columns.Add("涂层烧蚀量");
-            //dt.Columns.Add("传动阻力");
-            //dt.Columns.Add("电机扭矩");
-            //dt.Columns.Add("制动力矩");
-            //dt.Columns.Add("液压及电控");
-
-            //dataGridView1.AllowUserToResizeRows = false;
-            //dataGridView1.Columns[1].SortMode = DataGridViewColumnSortMode.NotSortable;
             DataRow dt1 = dt.NewRow();
-            
             DataRow dt2 = dt.NewRow();
             DataRow dt3 = dt.NewRow();
             DataRow dt4 = dt.NewRow();
@@ -133,31 +101,11 @@ namespace SharpGLWinformsApplication1
                 }
                 dt.Rows.Add(dtrow[x]);
                 x++;
-                    //dtrow[x][0] = xe.GetAttribute("应力");
-                //dtrow[x][1] = xe.GetAttribute("震动");
-                //dtrow[x][2] = xe.GetAttribute("源头载荷");
-                //dtrow[x][2] = xe.GetAttribute("形变");
 
-                //dtrow[x][3] = xe.GetAttribute("裂纹");
-                //dtrow[x][4] = xe.GetAttribute("裂纹");
-
-                //dtrow[x][5] = xe.GetAttribute("材料参数");
-                //dtrow[x][6] = xe.GetAttribute("涂层烧蚀量");
-                //dtrow[x][7] = xe.GetAttribute("传动阻力");
-                //dtrow[x][8] = xe.GetAttribute("电机扭矩");
-                //dtrow[x][9] = xe.GetAttribute("制动力矩");
-                //dtrow[x][10] = xe.GetAttribute("液压及电控");
             }
-            
-
-
-
-
 
             DataSet myds = new DataSet();
             myds.ReadXml(str);
-            //dataGridView2.DataSource = dt;
-            //dataGridView1.DataSource = dt;
             dataGridView1.DataSource = dt.DefaultView;
             for (int i = 0; i < 11; i++)
             {
@@ -190,9 +138,6 @@ namespace SharpGLWinformsApplication1
                         rowNode.Attributes.Append(rowAttribute);
                         rowsNode.AppendChild(rowNode);
                     }
-                    //Update the Progess Bar.  
-                    //toolStripProgressBar1.Value = 100 * (i + 1) / (dataGridView1.Rows.Count - 1);  
-
                 }
                 doc.Save(str);
 

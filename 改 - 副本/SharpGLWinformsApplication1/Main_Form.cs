@@ -17,21 +17,6 @@ namespace SharpGLWinformsApplication1
             InitializeComponent();
         }
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Main_Form_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void groupBox1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
             //e.Graphics.Clear(this.BackColor);
@@ -76,21 +61,33 @@ namespace SharpGLWinformsApplication1
             this.Close();
         }
 
-        private void skinMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void skinLine1_Click(object sender, EventArgs e)
-        {
-
-        }
+     
 
         private void 添加数据ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            adddata add = new adddata();
+            if(GuanLiYuan.ma==true){
+                adddata add = new adddata();
             groupBox1.Controls.Clear();
             groupBox1.Controls.Add(add);
+            }else{
+                MessageBox.Show("非管理员账户不可进入后台管理界面");
+            }
+            
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

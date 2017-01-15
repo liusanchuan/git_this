@@ -101,10 +101,6 @@ namespace SharpGLWinformsApplication1
                     Sd.InnerText= textBoxc23.Text;
                 if (Sd.Name == "d12")
                     Sd.InnerText= textBoxD12.Text;
-                if (Sd.Name == "d13")
-                    Sd.InnerText= textBoxD13.Text;
-                if (Sd.Name == "d23")
-                    Sd.InnerText= textBoxD23.Text;
                 if (Sd.Name == "d45")
                     Sd.InnerText= textBoxd45.Text;
                 if (Sd.Name == "d46")
@@ -117,27 +113,9 @@ namespace SharpGLWinformsApplication1
                     Sd.InnerText = textBoxD78.Text;
             }
             doc.Save("../Debug/Judgemartia.xml");
-            
 
             // 触发事件， 传递自定义参数
             OnDataChange(this, new DataChangeEventArgs(textBox10.Text, textBox41.Text, textBox42.Text, textBox43.Text, textBox44.Text, textBox45.Text, textBox46.Text, textBox47.Text, textBox48.Text, textBox49.Text));
-
-
-            //FileStream fs = File.OpenWrite("../Debug/HistoryFile/JM_LastHistory.txt");
-            //fs.SetLength(0);
-            //fs.Close();
-            //fs = null;
-            //his.ChangeLastHistory("../Debug/HistoryFile/JM_LastHistory.txt", textBox10.Text.Trim());
-            //his.ChangeLastHistory("../Debug/HistoryFile/JM_LastHistory.txt", textBox41.Text.Trim());
-            //his.ChangeLastHistory("../Debug/HistoryFile/JM_LastHistory.txt", textBox42.Text.Trim());
-            //his.ChangeLastHistory("../Debug/HistoryFile/JM_LastHistory.txt", textBox43.Text.Trim());
-            //his.ChangeLastHistory("../Debug/HistoryFile/JM_LastHistory.txt", textBox44.Text.Trim());
-            //his.ChangeLastHistory("../Debug/HistoryFile/JM_LastHistory.txt", textBox45.Text.Trim());
-            //his.ChangeLastHistory("../Debug/HistoryFile/JM_LastHistory.txt", textBox46.Text.Trim());
-            //his.ChangeLastHistory("../Debug/HistoryFile/JM_LastHistory.txt", textBox47.Text.Trim());
-            //his.ChangeLastHistory("../Debug/HistoryFile/JM_LastHistory.txt", textBox48.Text.Trim());
-            //his.ChangeLastHistory("../Debug/HistoryFile/JM_LastHistory.txt", textBox49.Text.Trim());
-            //this.Close();
         }
 
         private void JudgmentMatrix_Load(object sender, EventArgs e)
@@ -145,68 +123,14 @@ namespace SharpGLWinformsApplication1
             calcul();
         }
         public void calcul(){
-            //double[] B_array = new double[3];
-            //double[] C_array = new double[5];
-            //double[] D_array = new double[10];
-            //double[] A_ceng = new double[3];
-            //double[] B1_ceng = new double[3];
-            //double[] C1_ceng = new double[3];
-            //double[] C3_ceng = new double[3];
-            //double[] C_ceng = new double[2];
-            //double[] C1_ceng = new double[10];
+
             Dictionary<string,double> dic =new Dictionary<string,double>();
-
-
 
             XmlDocument doc = new XmlDocument();
             doc.Load("../Debug/Judgemartia.xml");
 
-
             foreach (XmlNode Sd in doc.DocumentElement.ChildNodes)
             {
-                //XmlElement Sd = (XmlElement)single_data;
-
-
-                //if (Sd.Name == "B1")
-                //    B_array[0] = Convert.ToDouble(Sd.InnerText.Trim());
-                //if (Sd.Name == "B2")
-                //    B_array[1] = Convert.ToDouble(Sd.InnerText.Trim());
-                //if (Sd.Name == "B3")
-                //    B_array[2] = Convert.ToDouble(Sd.InnerText.Trim());
-
-
-                //if (Sd.Name == "C1")
-                //    C_array[0] = Convert.ToDouble(Sd.InnerText.Trim());
-                //if (Sd.Name == "C2")
-                //    C_array[1] = Convert.ToDouble(Sd.InnerText.Trim());
-                //if (Sd.Name == "C3")
-                //    C_array[2] = Convert.ToDouble(Sd.InnerText.Trim());
-                //if (Sd.Name == "C4")
-                //    C_array[3] = Convert.ToDouble(Sd.InnerText.Trim());
-                //if (Sd.Name == "C5")
-                //    C_array[4] = Convert.ToDouble(Sd.InnerText.Trim());
-
-                //if (Sd.Name == "D1")
-                //    D_array[0] = Convert.ToDouble(Sd.InnerText.Trim());
-                //if (Sd.Name == "D2")
-                //    D_array[1] = Convert.ToDouble(Sd.InnerText.Trim());
-                //if (Sd.Name == "D2")
-                //    D_array[2] = Convert.ToDouble(Sd.InnerText.Trim());
-                //if (Sd.Name == "D3")
-                //    D_array[3] = Convert.ToDouble(Sd.InnerText.Trim());
-                //if (Sd.Name == "D4")
-                //    D_array[4] = Convert.ToDouble(Sd.InnerText.Trim());
-                //if (Sd.Name == "D5")
-                //    D_array[5] = Convert.ToDouble(Sd.InnerText.Trim());
-
-                //if (Sd.Name == "D6")
-                //    D_array[6] = Convert.ToDouble(Sd.InnerText.Trim());
-                //if (Sd.Name == "D7")
-                //    D_array[7] = Convert.ToDouble(Sd.InnerText.Trim());
-                //if (Sd.Name == "D8")
-                //    D_array[8] = Convert.ToDouble(Sd.InnerText.Trim());
-                //if (Sd.Name == "D9")
-                //    D_array[9] = Convert.ToDouble(Sd.InnerText.Trim());
                 if (Sd.Name == "b12"){
                     textBoxB12.Text = Sd.InnerText.Trim();
                 dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
@@ -228,12 +152,6 @@ dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
                 if (Sd.Name == "d12"){
                     textBoxD12.Text = Sd.InnerText.Trim();
 dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
-                if (Sd.Name == "d13"){
-                    textBoxD13.Text = Sd.InnerText.Trim();
-dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
-                if (Sd.Name == "d23"){
-                    textBoxD23.Text = Sd.InnerText.Trim();
-dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
                 if (Sd.Name == "d45"){
                     textBoxd45.Text = Sd.InnerText.Trim();
 dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
@@ -249,36 +167,7 @@ dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
                 if (Sd.Name == "d78"){
                     textBoxD78.Text = Sd.InnerText.Trim();
 dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
-              
-
-
-
-                   
-
-
-
             }
-            //double[,] B = new double[3, 3]{{1,B_array[0]/B_array[1],B_array[0]/B_array[2]},
-            //                            {B_array[1]/B_array[0],1,B_array[1]/B_array[2]},
-            //                            {B_array[2]/B_array[0],B_array[2]/B_array[1],1}};
-            //double[,] C123 = new double[3, 3]{{1,C_array[0]/C_array[1],C_array[0]/C_array[2]},
-            //                            {C_array[1]/C_array[0],1,C_array[1]/C_array[2]},
-            //                            {C_array[2]/C_array[0],C_array[2]/C_array[1],1}};
-            //double[,] C45 = new double[2, 2]{
-            //                                    {1,C_array[3]/C_array[4]},
-            //                                    {C_array[4]/C_array[3],1}
-            //};
-            //double[,] D123 = new double[3, 3]{{1,D_array[0]/D_array[1],D_array[0]/D_array[2]},
-            //                            {D_array[1]/D_array[0],1,D_array[1]/D_array[2]},
-            //                            {D_array[2]/D_array[0],D_array[2]/D_array[1],1}};
-            //double[,] D567 = new double[3, 3]{{1,D_array[4]/D_array[5],D_array[4]/D_array[6]},
-            //                            {D_array[5]/D_array[4],1,D_array[5]/D_array[6]},
-            //                            {D_array[6]/D_array[4],D_array[6]/D_array[5],1}};
-            //double[,] D89 = new double[2, 2]{
-            //                                    {1,D_array[7]/D_array[8]},
-            //                                    {D_array[8]/D_array[7],1}
-            //};
-
 
                     double[,] B = new double[3, 3]{{1,dic["b12"],dic["b13"]},
                                         {1/dic["b12"],1,dic["b23"]},
@@ -290,9 +179,8 @@ dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
                                                 {1,dic["c45"]},
                                                 {1/dic["c45"],1}
             };
-            double[,] D123 = new double[3, 3]{{1,dic["d12"],dic["d13"]},
-                                        {1/dic["d12"],1,dic["d23"]},
-                                        {1/dic["d13"],1/dic["d23"],1}};
+            double[,] D12 = new double[2,2]{{1,dic["d12"]},
+                                        {1/dic["d12"],1}};
             double[,] D567 = new double[3, 3]{{1,dic["d45"],dic["d46"]},
                                         {1/dic["d45"],1,dic["d56"]},
                                         {1/dic["d46"],1/dic["d56"],1}};
@@ -301,19 +189,21 @@ dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
             var Qz_B = getMaxEigenValues(B, 3);//B1層權重
             var Qz_c123 = getMaxEigenValues(C123, 3);
             var Qz_C45 = getMaxEigenValues(C45, 2);
-            var Qz_D123 = getMaxEigenValues(D123, 3);
+            var Qz_D12 = getMaxEigenValues(D12, 2);
             var Qz_D567 = getMaxEigenValues(D567, 3);
             var Qz_D89 = getMaxEigenValues(D89, 2);
-            double[] Final_D = new double[10];
-            for (var i = 0; i < 3; i++)
-            {
-                Final_D[i] = Qz_B[0] * Qz_c123[0] * Qz_D123[i];
-                Final_D[i + 4] = Qz_B[0] * Qz_c123[2] * Qz_D567[i];
-            }
-            Final_D[3] = Qz_B[0] * Qz_c123[1];
-            Final_D[7] = Qz_B[1] * Qz_C45[0] * Qz_D89[0];
-            Final_D[8] = Qz_B[1] * Qz_C45[0] * Qz_D89[1];
-            Final_D[9] = Qz_B[1] * Qz_C45[1];
+            double[] Final_D = new double[9];
+            Final_D[0] = Qz_B[0] * Qz_c123[0] * Qz_D12[0];
+            Final_D[1] = Qz_B[0] * Qz_c123[0] * Qz_D12[1];
+            Final_D[2] = Qz_B[0] * Qz_c123[1];
+            Final_D[3] = Qz_B[0] * Qz_c123[2] * Qz_D567[0];
+            Final_D[4] = Qz_B[0] * Qz_c123[2] * Qz_D567[1];
+            Final_D[5] = Qz_B[0] * Qz_c123[2] * Qz_D567[2];
+
+            
+            Final_D[6] = Qz_B[1] * Qz_C45[0] * Qz_D89[0];
+            Final_D[7] = Qz_B[1] * Qz_C45[0] * Qz_D89[1];
+            Final_D[8] = Qz_B[1] * Qz_C45[1];
 
             textBox10.Text = Final_D[0].ToString("N4");
             textBox41.Text = Final_D[1].ToString("N4");
@@ -324,8 +214,7 @@ dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
             textBox46.Text = Final_D[6].ToString("N4");
             textBox47.Text = Final_D[7].ToString("N4");
             textBox48.Text = Final_D[8].ToString("N4");
-            textBox49.Text = Final_D[9].ToString("N4");
-            textBox50.Text = Qz_B[2].ToString("N4");
+            textBox49.Text = Qz_B[2].ToString("N4");
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -348,10 +237,6 @@ dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
                     Sd.InnerText = textBoxc23.Text;
                 if (Sd.Name == "d12")
                     Sd.InnerText = textBoxD12.Text;
-                if (Sd.Name == "d13")
-                    Sd.InnerText = textBoxD13.Text;
-                if (Sd.Name == "d23")
-                    Sd.InnerText = textBoxD23.Text;
                 if (Sd.Name == "d45")
                     Sd.InnerText = textBoxd45.Text;
                 if (Sd.Name == "d46")
@@ -365,121 +250,6 @@ dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
             }
             doc.Save("../Debug/Judgemartia.xml");
             calcul();
-            //double[] B_array=new double[3];
-            //double[] C_array = new double[5];
-            //double[] D_array = new double[10];
-
-            //XmlDocument doc=new XmlDocument();
-            //doc.Load("../Debug/Judgemartia.xml");
-       
-
-            //foreach (XmlNode Sd in doc.DocumentElement.ChildNodes)
-            //{
-            //    //XmlElement Sd = (XmlElement)single_data;
-
-              
-            //    if (Sd.Name == "B1") 
-            //        B_array[0]=Convert.ToDouble(Sd.InnerText.Trim());
-            //    if (Sd.Name == "B2")
-            //        B_array[1] = Convert.ToDouble(Sd.InnerText.Trim());
-            //    if (Sd.Name == "B3")
-            //        B_array[2] = Convert.ToDouble(Sd.InnerText.Trim());
-
-
-            //    if (Sd.Name == "C1")
-            //        C_array[0] = Convert.ToDouble(Sd.InnerText.Trim());
-            //    if (Sd.Name == "C2")
-            //        C_array[1] = Convert.ToDouble(Sd.InnerText.Trim());
-            //    if (Sd.Name == "C3")
-            //        C_array[2] = Convert.ToDouble(Sd.InnerText.Trim());
-            //    if (Sd.Name == "C4")
-            //        C_array[3] = Convert.ToDouble(Sd.InnerText.Trim());
-            //    if (Sd.Name == "C5")
-            //        C_array[4] = Convert.ToDouble(Sd.InnerText.Trim());
-
-            //    if (Sd.Name == "D1")
-            //        D_array[0] = Convert.ToDouble(Sd.InnerText.Trim());
-            //    if (Sd.Name == "D2")
-            //        D_array[1] = Convert.ToDouble(Sd.InnerText.Trim());
-            //    if (Sd.Name == "D2")
-            //        D_array[2] = Convert.ToDouble(Sd.InnerText.Trim());
-            //    if (Sd.Name == "D3")
-            //        D_array[3] = Convert.ToDouble(Sd.InnerText.Trim());
-            //    if (Sd.Name == "D4")
-            //        D_array[4] = Convert.ToDouble(Sd.InnerText.Trim());
-            //    if (Sd.Name == "D5")
-            //        D_array[5] = Convert.ToDouble(Sd.InnerText.Trim());
-
-            //    if (Sd.Name == "D6")
-            //        D_array[6] = Convert.ToDouble(Sd.InnerText.Trim());
-            //    if (Sd.Name == "D7")
-            //        D_array[7] = Convert.ToDouble(Sd.InnerText.Trim());
-            //    if (Sd.Name == "D8")
-            //        D_array[8] = Convert.ToDouble(Sd.InnerText.Trim());
-            //    if (Sd.Name == "D9")
-            //        D_array[9] = Convert.ToDouble(Sd.InnerText.Trim());
-
-                
-
-            //}
-            //double[,] B=new double[3,3]{{1,B_array[0]/B_array[1],B_array[0]/B_array[2]},
-            //                            {B_array[1]/B_array[0],1,B_array[1]/B_array[2]},
-            //                            {B_array[2]/B_array[0],B_array[2]/B_array[1],1}};
-            //double[,] C123 = new double[3, 3]{{1,C_array[0]/C_array[1],C_array[0]/C_array[2]},
-            //                            {C_array[1]/C_array[0],1,C_array[1]/C_array[2]},
-            //                            {C_array[2]/C_array[0],C_array[2]/C_array[1],1}};
-            //double[,] C45 = new double[2, 2]{
-            //                                    {1,C_array[3]/C_array[4]},
-            //                                    {C_array[4]/C_array[3],1}
-            //};
-            //double[,] D123 = new double[3, 3]{{1,D_array[0]/D_array[1],D_array[0]/D_array[2]},
-            //                            {D_array[1]/D_array[0],1,D_array[1]/D_array[2]},
-            //                            {D_array[2]/D_array[0],D_array[2]/D_array[1],1}};
-            //double[,] D567 = new double[3, 3]{{1,D_array[4]/D_array[5],D_array[4]/D_array[6]},
-            //                            {D_array[5]/D_array[4],1,D_array[5]/D_array[6]},
-            //                            {D_array[6]/D_array[4],D_array[6]/D_array[5],1}};
-            //double[,] D89 = new double[2, 2]{
-            //                                    {1,D_array[7]/D_array[8]},
-            //                                    {D_array[8]/D_array[7],1}
-            //};
-
-            //var Qz_B=getMaxEigenValues(B, 3);//B1層權重
-            //var Qz_c123=getMaxEigenValues(C123, 3);
-            //var Qz_C45=getMaxEigenValues(C45, 2);
-            //var Qz_D123=getMaxEigenValues(D123, 3);
-            //var Qz_D567=getMaxEigenValues(D567, 3);
-            //var Qz_D89=getMaxEigenValues(D89,2);
-            //double[] Final_D = new double[10];
-            //for (var i = 0; i < 3; i++)
-            //{
-            //    Final_D[i] = Qz_B[0] * Qz_c123[0] * Qz_D123[i];
-            //    Final_D[i + 4] = Qz_B[0] * Qz_c123[2] * Qz_D567[i];
-            //}
-            //Final_D[3] = Qz_B[0] * Qz_c123[1];
-            //Final_D[7] = Qz_B[1] * Qz_C45[0] * Qz_D89[0];
-            //Final_D[8] = Qz_B[1] * Qz_C45[0] * Qz_D89[1];
-            //Final_D[9] = Qz_B[1] * Qz_C45[1] ;
-
-            //textBox10.Text = Final_D[0].ToString("N4");
-            //textBox41.Text = Final_D[1].ToString("N4");
-            //textBox42.Text = Final_D[2].ToString("N4");
-            //textBox43.Text = Final_D[3].ToString("N4");
-            //textBox44.Text = Final_D[4].ToString("N4");
-            //textBox45.Text = Final_D[5].ToString("N4");
-            //textBox46.Text = Final_D[6].ToString("N4");
-            //textBox47.Text = Final_D[7].ToString("N4");
-            //textBox48.Text = Final_D[8].ToString("N4");
-            //textBox49.Text = Final_D[9].ToString("N4");
-            //textBox50.Text = Qz_B[2].ToString("N4");
-        //    string str="";
-        //    double summary=0;
-        //    for(var o=0;o<10;o++){
-        //        summary += Final_D[o];
-        //        str=str+ Final_D[o].ToString()+"-";
-        //}
-        //    summary += Qz_B[2];
-        //        textBox10.Text =summary.ToString()+":"+str; //B_array.ToString() + C_array.ToString() + D_array.ToString();
-
         }
 
         public string TextBox01Text
@@ -532,74 +302,16 @@ dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
             set { this.textBox49.Text = value; }
             get { return this.textBox49.Text; }
         }
-        public string TextBox11Text
-        {
-            set { this.textBox50.Text = value; }
-            get { return this.textBox50.Text; }
-        }
+        //public string TextBox11Text
+        //{
+        //    set { this.textBox50.Text = value; }
+        //    get { return this.textBox50.Text; }
+        //}
 
         void InitTextBoxRemind()
         {
             calcul();
-
-            //array = his.ReadLastHistory("../Debug/HistoryFile/JM_LastHistory.txt");
-            //textBox10.Text = array[0];
-            //textBox41.Text = array[1];
-            //textBox42.Text = array[2];
-            //textBox43.Text = array[3];
-            //textBox44.Text = array[4];
-            //textBox45.Text = array[5];
-            //textBox46.Text = array[6];
-            //textBox47.Text = array[7];
-            //textBox48.Text = array[8];
-            //textBox49.Text = array[9];
-            //array = his.ReadLastHistory("../Debug/HistoryFile/JM1_LastHistory.txt");
-            //textBoxB12.Text = array[0];
-            //textBoxB13.Text = array[1];
-            //textBoxB23.Text = array[2];
-            //textBoxc12.Text = array[3];
-            //textBoxc13.Text = array[4];
-            //textBoxc23.Text = array[5];
-            //textBoxD12.Text = array[6];
-            //textBoxd45.Text = array[7];
-            //textBoxd46.Text = array[8];
-            //textBoxd56.Text = array[9];
-            //textBoxc45.Text = array[10];
-            //textBoxD78.Text = array[11];
         }
-
-        //private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        //{
-
-        //    if (e.Action == TreeViewAction.ByMouse)
-        //    {
-        //        if (e.Node.Name == "节点1")
-        //        {
-        //            tabControl1.SelectedTab = tabPage1;
-        //        }
-        //        else if (e.Node.Name == "节点2")
-        //        {
-        //            tabControl1.SelectedTab = tabPage2;
-        //        }
-        //        else if (e.Node.Name == "节点3")
-        //        {
-        //            tabControl1.SelectedTab = tabPage3;
-        //        }
-        //        else if (e.Node.Name == "节点4")
-        //        {
-        //            tabControl1.SelectedTab = tabPage4;
-        //        }
-        //        else if (e.Node.Name == "节点5")
-        //        {
-        //            tabControl1.SelectedTab = tabPage5;
-        //        }
-        //        else if (e.Node.Name == "节点6")
-        //        {
-        //            tabControl1.SelectedTab = tabPage6;
-        //        }
-        //    }
-
-        //}
 
 
         private void textBox2_TextChanged(object sender, EventArgs e)   //B12
@@ -616,86 +328,6 @@ dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
         {
             check_Num(this.textBoxB23, this.textBox8);
         }
-
-
-
-        
-        //private void button_Click(object sender, EventArgs e)
-
-        //{
-
-      
-        //    FileStream fs = File.OpenWrite("../Debug/HistoryFile/JM1_LastHistory.txt");
-        //    fs.SetLength(0);
-        //    fs.Close();
-        //    fs = null;
-        //    his.ChangeLastHistory("../Debug/HistoryFile/JM1_LastHistory.txt", textBoxB12.Text.Trim());
-        //    his.ChangeLastHistory("../Debug/HistoryFile/JM1_LastHistory.txt", textBoxB13.Text.Trim());
-        //    his.ChangeLastHistory("../Debug/HistoryFile/JM1_LastHistory.txt", textBoxB23.Text.Trim());
-        //    his.ChangeLastHistory("../Debug/HistoryFile/JM1_LastHistory.txt", textBoxc12.Text.Trim());
-        //    his.ChangeLastHistory("../Debug/HistoryFile/JM1_LastHistory.txt", textBoxc13.Text.Trim());
-        //    his.ChangeLastHistory("../Debug/HistoryFile/JM1_LastHistory.txt", textBoxc23.Text.Trim());
-        //    his.ChangeLastHistory("../Debug/HistoryFile/JM1_LastHistory.txt", textBoxD12.Text.Trim());
-        //    his.ChangeLastHistory("../Debug/HistoryFile/JM1_LastHistory.txt", textBoxd45.Text.Trim());
-        //    his.ChangeLastHistory("../Debug/HistoryFile/JM1_LastHistory.txt", textBoxd46.Text.Trim());
-        //    his.ChangeLastHistory("../Debug/HistoryFile/JM1_LastHistory.txt", textBoxd56.Text.Trim());
-        //    his.ChangeLastHistory("../Debug/HistoryFile/JM1_LastHistory.txt", textBoxc45.Text.Trim());
-        //    his.ChangeLastHistory("../Debug/HistoryFile/JM1_LastHistory.txt", textBoxc78.Text.Trim());
-        //    if (!CheckMatrix())
-        //        return;
-        //    //计算A层判断矩阵
-        //    double[][] a = new double[3][];
-        //    a[0] = new double[] { 1, double.Parse(textBoxB12.Text.Trim()), double.Parse(textBoxB13.Text.Trim()) };
-        //    a[1] = new double[] { double.Parse(textBox4.Text.Trim()), 1, double.Parse(textBoxB23.Text.Trim()) };
-        //    a[2] = new double[] { double.Parse(textBox7.Text.Trim()), double.Parse(textBox8.Text.Trim()), 1 };
-
-        //    double[] q = normalize(a);//求特征向量
-        //    textBox10.Text = Convert.ToDouble(q[2]).ToString("0.000");
-
-        //    //计算B1层判断矩阵
-        //    double[][] b = new double[3][];
-        //    b[0] = new double[] { 1, double.Parse(textBoxc12.Text.Trim()), double.Parse(textBoxc13.Text.Trim()) };
-        //    b[1] = new double[] { double.Parse(textBox14.Text.Trim()), 1, double.Parse(textBoxc23.Text.Trim()) };
-        //    b[2] = new double[] { double.Parse(textBox18.Text.Trim()), double.Parse(textBox19.Text.Trim()), 1 };
-
-        //    double[] w = normalize(b);//求特征向量
-        //    textBox43.Text = Convert.ToDouble(q[0] * w[1]).ToString("0.000");
-
-        //    //计算C1层判断矩阵
-        //    double[][] c = new double[2][];
-        //    c[0] = new double[] { 1, double.Parse(textBoxD12.Text.Trim()) };
-        //    c[1] = new double[] { double.Parse(textBox22.Text.Trim()), 1 };
-        //    double[] r = normal(c);//求特征向量
-        //    textBox41.Text = Convert.ToDouble(q[0] * w[0] * r[0]).ToString("0.000");
-        //    textBox42.Text = Convert.ToDouble(q[0] * w[0] * r[1]).ToString("0.000");
-
-        //    //计算C3层判断矩阵
-        //    double[][] d = new double[3][];
-        //    d[0] = new double[] { 1, double.Parse(textBoxd45.Text.Trim()), double.Parse(textBoxd46.Text.Trim()) };
-        //    d[1] = new double[] { double.Parse(textBox27.Text.Trim()), 1, double.Parse(textBoxd56.Text.Trim()) };
-        //    d[2] = new double[] { double.Parse(textBox31.Text.Trim()), double.Parse(textBox32.Text.Trim()), 1 };
-        //    double[] t = normalize(d);//求特征向量
-        //    textBox44.Text = Convert.ToDouble(q[0] * w[2] * t[0]).ToString("0.000");
-        //    textBox45.Text = Convert.ToDouble(q[0] * w[2] * t[1]).ToString("0.000");
-        //    textBox46.Text = Convert.ToDouble(q[0] * w[2] * t[2]).ToString("0.000");
-
-        //    //计算B2层判断矩阵
-        //    double[][] f = new double[2][];
-        //    f[0] = new double[] { 1, double.Parse(textBoxc45.Text.Trim()) };
-        //    f[1] = new double[] { double.Parse(textBox34.Text.Trim()), 1 };
-        //    double[] y = normal(f);//求特征向量
-        //    textBox49.Text = Convert.ToDouble(q[1] * y[1]).ToString("0.000");
-
-        //    //计算C4层判断矩阵
-        //    double[][] g = new double[2][];
-        //    g[0] = new double[] { 1, double.Parse(textBoxc45.Text.Trim()) };
-        //    g[1] = new double[] { double.Parse(textBox34.Text.Trim()), 1 };
-        //    double[] u = normal(g);//求特征向量
-        //    textBox47.Text = Convert.ToDouble(q[1] * y[0] * u[0]).ToString("0.000");
-        //    textBox48.Text = Convert.ToDouble(q[1] * y[0] * u[1]).ToString("0.000");
-           
-
-        //}
 
         private bool CheckMatrix()
         {
@@ -816,11 +448,7 @@ dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
         {
             check_Num(this.textBoxD12, this.textBox22);
         }
-        private void textBoxD13_TextChanged(object sender, EventArgs e)
-        {
-            check_Num(this.textBoxD13, this.textBox52);
 
-        }
        
         //矩阵textbox限制输入  
         private void check_Num(TextBox inputText, TextBox outputText)
@@ -884,10 +512,6 @@ dic.Add(Sd.Name,Convert.ToDouble(Sd.InnerText.Trim()));}
             Close();
         }
 
-        private void textBoxD23_TextChanged(object sender, EventArgs e)
-        {
-            check_Num(this.textBoxD23, this.textBox53);
-        }
 
 
 
