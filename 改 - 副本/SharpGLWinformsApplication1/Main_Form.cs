@@ -19,14 +19,8 @@ namespace SharpGLWinformsApplication1
 
         private void groupBox1_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            //e.Graphics.Clear(this.BackColor);
-
         }
 
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
 
         private void 可靠性评估ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -75,17 +69,14 @@ namespace SharpGLWinformsApplication1
             
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
+
+        private void skinMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
         }

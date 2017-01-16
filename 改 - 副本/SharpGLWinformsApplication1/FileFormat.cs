@@ -15,5 +15,10 @@ namespace SharpGLWinformsApplication1
         {
             InitializeComponent();
         }
+
+        private void FileFormat_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

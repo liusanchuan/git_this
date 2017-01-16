@@ -252,21 +252,7 @@ namespace SharpGLWinformsApplication1
                     return false;
                 }
             }
-            //if (AQXS.Text.Trim().Length == 0)
-            //{
-            //    MessageBox.Show("请输入安全系数");
-            //    return false;
-            //}
-            //else
-            //{
-            //    string pattern = @"^-?\d+\.?\d*$";
-            //    Match m = Regex.Match(AQXS.Text, pattern);   // 匹配正则表达式
-            //    if (!m.Success)   // 输入的不是数字
-            //    {
-            //        MessageBox.Show("请正确输入安全系数");
-            //        return false;
-            //    }
-            //}
+
 
             return true;
         }
@@ -616,7 +602,6 @@ namespace SharpGLWinformsApplication1
             this.textBox8.Text = JM.TextBox08Text;
             this.textBox9.Text = JM.TextBox09Text;
             this.textBox10.Text = JM.TextBox10Text;
-            //this.textBox11_.Text = JM.TextBox11Text;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

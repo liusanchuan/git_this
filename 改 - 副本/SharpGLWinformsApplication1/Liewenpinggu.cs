@@ -15,13 +15,9 @@ namespace SharpGLWinformsApplication1
     public partial class Liewenpinggu : UserControl
     {
         int[,] Position = new int[100, 100];
-       int CountT=4;    //表示现在有多少列数据，当增加时，多一条裂纹数据
         int[] pencolor=new int[100];
 
         DataTable dt = new DataTable("Liewen");
-
-        //private string ConnectionString = "Integrated Security=SSPI;Initial Catalog=PlatformFlawBase;Data Source=localhost";
-
         sqlConnection sqlconn= new sqlConnection();
         private string ConnectionString =null;
 
@@ -30,9 +26,6 @@ namespace SharpGLWinformsApplication1
         private string sql = null;
         private DataSet ds = null;
         private SqlDataAdapter da = null;
-        //  private SqlCommandBuilder builder = null;
-
-
         public Liewenpinggu()
         {
             InitializeComponent();
@@ -52,8 +45,6 @@ namespace SharpGLWinformsApplication1
             dt.Columns.Add("已修复");
             if (conn.State != ConnectionState.Open)
                 conn.Close();
-            //ConnectionString = "Data Source=MS-20160121SCPS;Initial Catalog=PlatformFlawBase;"
-            //    + "Persist Security Info=True;User ID=sa;Password=zf19891014";
             ds = new DataSet();
             
             conn = new SqlConnection(ConnectionString);
@@ -63,7 +54,6 @@ namespace SharpGLWinformsApplication1
             da = new SqlDataAdapter(sql, conn);
             // 创建一个数据集对象并填充数据，然后将数据显示在DataGrid控件中
             da.Fill(ds);
-            //ds.Tables[0].Columns[0].ColumnName= "ID";
             dataGridView1.DataSource = ds.Tables[0].DefaultView;
             for(int number=0;number<dataGridView1.Rows.Count;number++){
                 Position[number, 0] = Convert.ToInt32(dataGridView1.Rows[number].Cells[0].Value)/1000;
@@ -117,8 +107,6 @@ namespace SharpGLWinformsApplication1
 
             if (conn.State != ConnectionState.Open)
                 conn.Close();
-            //ConnectionString = "Data Source=MS-20160121SCPS;Initial Catalog=PlatformFlawBase;"
-            //    + "Persist Security Info=True;User ID=sa;Password=zf19891014";
             try
             {
                 ds = new DataSet();
@@ -199,8 +187,6 @@ namespace SharpGLWinformsApplication1
                 textBox15.Text="";
                 return;
             }
-            //ConnectionString = "Data Source=MS-20160121SCPS;Initial Catalog=PlatformFlawBase;"
-            //    + "Persist Security Info=True;User ID=sa;Password=zf19891014";
             foreach (DataGridViewRow v in dataGridView1.Rows)
             {
                 if (v.Cells[0].Value != null && v.Cells[1].Value != null && v.Cells[2].Value != null && v.Cells[3].Value != null )
@@ -227,9 +213,7 @@ namespace SharpGLWinformsApplication1
 
                 sql = "insert into  CrackInfo  values('" + Convert.ToDouble(textBox1.Text.Trim()).ToString() + "'," +
                     "'" + Convert.ToDouble(textBox15.Text.Trim()).ToString() + "'," +
-                   //"'" + Convert.ToDouble(textBox2.Text.Trim()).ToString() + "'," +
                    "'" + Convert.ToDouble(textBox3.Text.Trim()).ToString() + "'," +
-                   //"'" + Convert.ToDouble(textBox14.Text.Trim()).ToString() + "'," +
                    "'" + Convert.ToDouble(textBox16.Text.Trim()).ToString() + "',0)";
                 conn = new SqlConnection(ConnectionString);
                 cmd = new SqlCommand(sql, conn);
@@ -266,15 +250,9 @@ namespace SharpGLWinformsApplication1
 
                 string sql = "delete from  CrackInfo where [StartPoint X(°)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value + "'" +
                     "and [StartPoint Y(°)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value + "'" +
-                     //"and [CrackWidth(mm)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value + "'" +
                       "and [CrackDepth(mm)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value + "'" +
-                       //"and [CrackAngle   (°)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value + "'" +
                         "and [CrackLength(mm)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value + "'";
-                //cmd.Connection = conn;
-
                 cmd = new SqlCommand(sql, conn);
-                // cmd.CommandText = "delete from  CrackInfo where 裂纹长度='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value + "' and 裂纹宽度='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value+ "'";
-
                 cmd.ExecuteNonQuery();
                 //  conn.Close();
                 MessageBox.Show("数据删除成功");
@@ -285,8 +263,6 @@ namespace SharpGLWinformsApplication1
                 da = new SqlDataAdapter(sql, conn);
                 da.Fill(ds, " CrackInfo");
                 this.dataGridView1.DataSource = ds.Tables[" CrackInfo"].DefaultView;
-
-
             }
             catch (Exception E)
             {
@@ -304,9 +280,7 @@ namespace SharpGLWinformsApplication1
         private void button3_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
-            //textBox2.Text = "";
             textBox3.Text = "";
-            //textBox14.Text = "";
             textBox15.Text = "";
             textBox16.Text = "";
             conn = new SqlConnection(ConnectionString);
@@ -321,9 +295,7 @@ namespace SharpGLWinformsApplication1
         private void button6_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
-            //textBox2.Text = "";
             textBox3.Text = "";
-            //textBox14.Text = "";
             textBox15.Text = "";
             textBox16.Text = "";
         }
@@ -375,10 +347,6 @@ namespace SharpGLWinformsApplication1
                 }
 
             }
-                //Rectangle ellipseRec=new Rectangle(-5,-5,5,5);
-
-                //g.DrawEllipse(P, ellipseRec);
-                //Random random=new Random();
             for (int number = 0; number < dataGridView1.Rows.Count; number++)
             {
                 Position[number, 0] = Convert.ToInt32(dataGridView1.Rows[number].Cells[0].Value) / 1000;
@@ -403,20 +371,15 @@ namespace SharpGLWinformsApplication1
             {
                 IPen.Color = Color.Blue;
                 g.DrawEllipse(IPen, -10, -10, 10, 10);
-                //pictureBox1.Refresh();
                 g.DrawString(s, new Font("微软雅黑", 18), Brushes.Blue, 0, -20);
 
             }
             else
             {
                 IPen.Color = Color.Red;
-
                 g.DrawEllipse(IPen, -25, -25, 25, 25);
-                //pictureBox1.Refresh();
                 g.DrawString(s, new Font("微软雅黑", 18), Brushes.Red, 0, -20);
             }
-
-            //pictureBox1.Refresh();
             g.ResetTransform();
         }
 
@@ -446,9 +409,7 @@ namespace SharpGLWinformsApplication1
                     {
                         sql = "update CrackInfo set repair=1 where [StartPoint X(°)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[0].Value + "'" +
                         "and [StartPoint Y(°)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[1].Value + "'" +
-                            //"and [CrackWidth(mm)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value + "'" +
                           "and [CrackDepth(mm)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[2].Value + "'" +
-                            //"and [CrackAngle   (°)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[4].Value + "'" +
                             "and [CrackLength(mm)]='" + dataGridView1.Rows[dataGridView1.CurrentRow.Index].Cells[3].Value + "'";
                         conn = new SqlConnection(ConnectionString);
                         cmd = new SqlCommand(sql, conn);

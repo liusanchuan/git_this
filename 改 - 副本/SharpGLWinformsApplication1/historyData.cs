@@ -18,14 +18,7 @@ namespace SharpGLWinformsApplication1
         {
             InitializeComponent();
         }
-
-
-
-
-        //private string ConnectionString = "server=.;database=PlatformFlawBase;Integrated Security=SSPI;";
-
-        private string ConnectionString=null;
-        
+        private string ConnectionString=null;       
         private SqlConnection conn = null;
         //private SqlCommand cmd = null;
         private string sql = null;
@@ -36,7 +29,6 @@ namespace SharpGLWinformsApplication1
             "加注/发射",
             "时间"
         };
-  
 
         private void historyData_Load(object sender, EventArgs e)
         {
@@ -73,8 +65,6 @@ namespace SharpGLWinformsApplication1
             RefreshDataGridView();
         }
         private void dataSelect(){
-           //ConnectionString = "Data Source=MS-20160121SCPS;Initial Catalog=PlatformFlawBase;"
-           //     + "Persist Security Info=True;User ID=sa;Password=zf19891014";
             try
             {
                 ds = new DataSet();
@@ -153,12 +143,8 @@ namespace SharpGLWinformsApplication1
                     }
                 }
             }
-            //chart1.Series.Clear();
             int seriesNum = 0;
             Double[][] series=new Double[2][];
-
-
-            
             for (int i = 2; i < dataGridView1.ColumnCount; i++)
             {
                 if (dataGridView1.Columns[i].Visible == true)
@@ -173,9 +159,7 @@ namespace SharpGLWinformsApplication1
                             }
                             series[seriesNum][F] = Convert.ToDouble(dataGridView1.Rows[F].Cells[i].Value);
                             X[F] = F;
-
                     }
-                    //chart1.ChartAreas[0].AxisX.Maximum = 30;
                     chart1.Series[seriesNum].Points.DataBindXY(X, series[seriesNum]);
                     seriesNum++;
                     if (seriesNum >1)
@@ -184,11 +168,6 @@ namespace SharpGLWinformsApplication1
                     }
                 }
             }
-        }
-
-        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -230,7 +209,6 @@ namespace SharpGLWinformsApplication1
                             adapter.Fill(ds, "Sheet1");
                             dataGridView2.DataSource = ds.Tables[0].DefaultView;
                             sqlConnection sqlstring = new sqlConnection();
-                            //string str = "server=.;database=PlatformFlawBase;Integrated Security=SSPI;";
                             string str = sqlstring.getconn();
                             SqlConnection con = new SqlConnection(str); //创建连接对象
                             con.Open(); //打开连接
@@ -290,12 +268,6 @@ namespace SharpGLWinformsApplication1
                 textBox1.Text = FD.FileName;
             }
         }
-
-        private void Rwrite_Click(object sender, EventArgs e)
-        {
-            textBox1.Text = "";
-        }
-
         private void chart1_Click(object sender, EventArgs e)
         {
 
@@ -336,5 +308,3 @@ namespace SharpGLWinformsApplication1
     
     }   
 }
-
-

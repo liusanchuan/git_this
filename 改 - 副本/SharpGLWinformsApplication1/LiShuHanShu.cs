@@ -162,8 +162,6 @@ namespace SharpGLWinformsApplication1
             chart1.Series[2].Points.DataBindXY(X3, series1);
             chart1.Series[3].Points.DataBindXY(X4, series1);
             chart1.Series[4].Points.DataBindXY(X5, series1);
-            //SaveDataGridToXml();
-            ////dataGridView1.da;
         }
 
         private void chart1_Click(object sender, EventArgs e)

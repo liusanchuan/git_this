@@ -39,9 +39,6 @@ namespace SharpGLWinformsApplication1
 
             }
                 sc.Save_SQL_Data(saveData, "ExpandVelocity");
-            //double E = 212000, D_kth = 37.6, Kc = 1, KCmax = 1, KCmin = 0, D_KC, D_K, R;
-
-
             double E = Convert.ToDouble(textBox2_E.Text);
             double D_kth = Convert.ToDouble(textBox1_D_Kth.Text),
                 Kc = Convert.ToDouble(textBox5_Kc.Text), 
@@ -61,7 +58,6 @@ namespace SharpGLWinformsApplication1
 
             for (double i = 0; i < 10000; i++)
             {
-                //double s1 =(double)Math.Pow((a0 + H * i+0.5*H), 2)*H;
                 double a = a0 + H * (i + 0.5);
                 D_K = D_KC * Math.Sqrt(Math.PI * a);
                 double s1 = H * (Math.Pow(E, 2) / 48 * Math.Pow(D_K + D_kth, -0.5) * Math.Pow((1 / D_K - 1 / ((1 - R) * Kc)), 1.5));
@@ -100,4 +96,3 @@ namespace SharpGLWinformsApplication1
         }
     }
 }
-

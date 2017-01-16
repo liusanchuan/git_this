@@ -81,12 +81,7 @@ namespace SharpGLWinformsApplication1
                 user.AppendChild(user_password);
                 bookstore.AppendChild(user);
                 doc.Save(xmlConnection.str);
-                //DialogResult ok=
-                    MessageBox.Show("注册成功","",MessageBoxButtons.OK);
-                //if (ok == System.Windows.Forms.DialogResult.OK)
-                //{
-                //    Register.Close;
-                //}
+                 MessageBox.Show("注册成功","",MessageBoxButtons.OK);
                 this.Close();
             }
             else

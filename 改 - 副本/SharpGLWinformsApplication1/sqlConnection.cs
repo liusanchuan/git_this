@@ -103,7 +103,6 @@ namespace SharpGLWinformsApplication1
         {
             if (input.Trim().Length == 0)
             {
-                //System.Windows.Forms.MessageBox.Show("您未输入数字");
                 return false;
             }
             else
@@ -112,7 +111,6 @@ namespace SharpGLWinformsApplication1
                 Match m = Regex.Match(input.Trim(), pattern);   //匹配正则表达式
                 if (!m.Success)   // 输入的不是数字
                 {
-                    //System.Windows.Forms.MessageBox.Show("请正确输入应力值");
                     return false;
                 }
             }

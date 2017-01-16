@@ -75,7 +75,6 @@ namespace SharpGLWinformsApplication1
 
         private void appendValue(int Columns)
         {
-            //ColorChange(Columns);
             groupBox1.Text ="更改-"+ name[Columns];
 
             T9.Text = dataGridView1.Rows[0].Cells[Columns].Value.ToString().Trim();
@@ -158,9 +157,14 @@ namespace SharpGLWinformsApplication1
             Double[] INIT_value = { 0, 12.5, 3 * 12.5, 5 * 12.5, 7 * 12.5, 8 * 12.5, };
             if (Mode == 1)
             { //普通存储模式
+                bool ZorF=true;
                 foreach (int i in FuXiangGuan_Columns)
                 {
-                    if (Columns == i)//负相关
+                    if(Columns==i){
+                        ZorF=false;
+                    }
+                }
+                    if (ZorF==false)//负相关
                     {
                         if (Convert.ToDouble(T9.Text) >= Convert.ToDouble(T7.Text) ||
                             Convert.ToDouble(T7.Text) >= Convert.ToDouble(T5.Text) ||
@@ -173,7 +177,7 @@ namespace SharpGLWinformsApplication1
                             appendValue(Columns);
                             return;
                         }
-                        break;
+                        
                     }
                     else//正相关
                     {
@@ -188,15 +192,16 @@ namespace SharpGLWinformsApplication1
                             appendValue(Columns);
                             return;
                         }
+                        
                     }
-                }
                 dataGridView1.Rows[0].Cells[Columns].Value = T9.Text;
                 dataGridView1.Rows[1].Cells[Columns].Value = T7.Text;
                 dataGridView1.Rows[2].Cells[Columns].Value = T5.Text;
                 dataGridView1.Rows[3].Cells[Columns].Value = T3.Text;
                 dataGridView1.Rows[4].Cells[Columns].Value = T1.Text;
                 dataGridView1.Rows[5].Cells[Columns].Value = T0.Text;
-            }
+                }
+        
             else if (Mode == 0)    //********重置*********
             {
                 for (Columns = 0; Columns < 10; Columns++)
@@ -304,6 +309,11 @@ namespace SharpGLWinformsApplication1
                 SaveDataGridToXml(i, 0);
             }
             appendValue(Col);
+        }
+
+        private void skinButton2_save_Click(object sender, EventArgs e)
+        {
+            SaveDataGridToXml(Col, 1);            
         }
 
  

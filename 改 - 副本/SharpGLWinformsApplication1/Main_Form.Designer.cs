@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Form));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.skinMenuStrip1 = new CCWin.SkinControl.SkinMenuStrip();
@@ -38,7 +39,6 @@
             this.扩展速率评估ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.历史数据查询ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.添加数据ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.skinMenuStrip1.SuspendLayout();
@@ -61,11 +61,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupBox1_Paint);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(214, 72);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(416, 56);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "欢迎使用此软件";
+            // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.DimGray;
+            this.pictureBox1.BackColor = System.Drawing.Color.White;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-5, -140);
+            this.pictureBox1.Location = new System.Drawing.Point(-1, -141);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(852, 835);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -80,7 +91,7 @@
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Image = global::SharpGLWinformsApplication1.Properties.Resources.close_24px_1199932_easyicon_net;
-            this.button1.Location = new System.Drawing.Point(830, 0);
+            this.button1.Location = new System.Drawing.Point(824, 2);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(25, 23);
@@ -142,6 +153,7 @@
             this.skinMenuStrip1.TitleColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(228)))), ((int)(((byte)(236)))));
             this.skinMenuStrip1.TitleRadius = 4;
             this.skinMenuStrip1.TitleRadiusStyle = CCWin.SkinClass.RoundStyle.All;
+            this.skinMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.skinMenuStrip1_ItemClicked);
             // 
             // 可靠性评估ToolStripMenuItem
             // 
@@ -185,17 +197,6 @@
             this.添加数据ToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
             this.添加数据ToolStripMenuItem.Text = "管理员界面";
             this.添加数据ToolStripMenuItem.Click += new System.EventHandler(this.添加数据ToolStripMenuItem_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Gainsboro;
-            this.label1.Font = new System.Drawing.Font("宋体", 42F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(220, 68);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(416, 56);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "欢迎使用此软件";
             // 
             // Main_Form
             // 

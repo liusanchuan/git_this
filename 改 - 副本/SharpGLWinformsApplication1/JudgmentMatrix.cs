@@ -20,7 +20,6 @@ namespace SharpGLWinformsApplication1
     public partial class JudgmentMatrix : Form
     {
         // 定义委托
-        // public delegate void DataChangeHandler(string x); 一次可以传递一个string
         public delegate void DataChangeHandler(object sender, DataChangeEventArgs args);
         // 声明事件
         public event DataChangeHandler DataChange;
@@ -50,8 +49,6 @@ namespace SharpGLWinformsApplication1
             formatProvider.TextInfo.ListSeparator = " ";
             var matrix = DenseMatrix.OfArray(array);
             var evd = matrix.Evd();
-            //label1.Text = evd.EigenVectors.ToString("#0.00\t", formatProvider);
-            //label2.Text = evd.EigenValues.ToString("N", formatProvider);
             var b = new Complex[x];
             double[] d = new double[3];
             for (int i = 0; i < x; i++)
@@ -59,15 +56,7 @@ namespace SharpGLWinformsApplication1
                 var a = evd.EigenValues.AbsoluteMaximumIndex();
                 b[i] = evd.EigenVectors[i, a];
                 d[i] = b[i].Real;
-                //var a0 = evd.EigenValues[0];
-                //var a1 = evd.EigenValues[i];
-                //label2.Text = evd.EigenValues[i][0].ToString();
-                //Console.Write(a0);
             }
-
-            //double d = b[0].Real;
-
-            //string b = Convert.ToString(b[0]);
             //歸一化
             double sum = d.Sum();
             for (var z = 0; z < x; z++)
