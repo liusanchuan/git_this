@@ -68,7 +68,9 @@ namespace SharpGLWinformsApplication1
         //查找数据
         private void button1_Click_1(object sender, EventArgs e)
         {
+            //dataSelect();
             dataSelect();
+            RefreshDataGridView();
         }
         private void dataSelect(){
            //ConnectionString = "Data Source=MS-20160121SCPS;Initial Catalog=PlatformFlawBase;"
@@ -144,6 +146,10 @@ namespace SharpGLWinformsApplication1
                     {
                         dataGridView1.Columns[Cedian + 1].Visible = true;
                         dataGridView1.Columns[Cedian + 11].Visible = true;
+
+                        chart1.Series[0].Name = "S" + Cedian;
+                        chart1.Series[1].Name = "T" + Cedian;
+                        groupBox2.Text = mystr + groupBox2.Text;
                     }
                 }
             }
@@ -169,7 +175,7 @@ namespace SharpGLWinformsApplication1
                             X[F] = F;
 
                     }
-                    chart1.ChartAreas[0].AxisX.Maximum = 30;
+                    //chart1.ChartAreas[0].AxisX.Maximum = 30;
                     chart1.Series[seriesNum].Points.DataBindXY(X, series[seriesNum]);
                     seriesNum++;
                     if (seriesNum >1)
@@ -303,8 +309,8 @@ namespace SharpGLWinformsApplication1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            dateTimePicker1.Text = "";
-            dateTimePicker2.Text = "";
+            dateTimePicker1.Text = "1989/1/11 星期三 16:41";
+            dateTimePicker2.Text = "2017/1/11 星期三 16:41";
             comboBox2.SelectedItem = null;
             comboBox3.SelectedItem = null;
 
@@ -324,30 +330,8 @@ namespace SharpGLWinformsApplication1
             da.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0].DefaultView;
             conn.Close();
-
-            /* int i, j;
-             i = 0;
-             j = 3;
-             for (i = 0; i < dataGridView1.RowCount - 1; i++)
-             {
-
-                 for (j = 4; j < 23; j++)
-                 {
-                     if (j >= 3 && j <= 12)
-                     {
-                         string str = dataGridView1.Rows[i].Cells[j].Value.ToString();
-                         if (str != "" && Convert.ToDouble(str) > 20)
-                             dataGridView1.Rows[i].Cells[j].Style.ForeColor = Color.Red;
-                     }
-                     if (j >= 13 && j <= 23)
-                     {
-                         string str = dataGridView1.Rows[i].Cells[j].Value.ToString();
-                         if (str != "" && Convert.ToDouble(str) > 10)
-                             dataGridView1.Rows[i].Cells[j].Style.ForeColor = Color.Blue;
-                     }
-                 }
-             }*/
-
+            dataSelect();
+            RefreshDataGridView();
         }
     
     }   

@@ -20,6 +20,18 @@ namespace SharpGLWinformsApplication1
 {
     public partial class realiable : UserControl
     {
+        public string[] name ={
+                                 "应力",
+                                 "震动",
+                                 "形变",
+                                 "裂纹",
+                                 "材料参数",
+                                 "涂层烧蚀量",
+                                 "传动阻力",
+                                 "电机扭矩",
+                                 "制动力矩",
+                                 "液压及电控"
+                             };
         public realiable()
         {
             InitializeComponent();
@@ -261,18 +273,7 @@ namespace SharpGLWinformsApplication1
         public double[,] ReadXmlData()
         {
 
-            string[] name={
-                                 "应力",
-                                 "震动",
-                                 "形变",
-                                 "裂纹",
-                                 "材料参数",
-                                 "涂层烧蚀量",
-                                 "传动阻力",
-                                 "电机扭矩",
-                                 "制动力矩",
-                                 "液压及电控"
-                             };
+
             double[,] dtrow_CZB = new double[6, 10];
             string str = "../Debug/LiShuduBiao400.xml";
             if(XMLConnectionr.str=="800")
@@ -440,6 +441,33 @@ namespace SharpGLWinformsApplication1
                 ZDLJ.Text.Trim().ToString(),
                 YYJDK.Text.Trim().ToString()
             };
+
+            JudgeInputText Judge = new JudgeInputText();
+            for (int i = 0; i < saveData.Length; i++)
+            {
+                if (Judge.judge(saveData[i]) == false)
+                {
+                    MessageBox.Show("输入的内容为空或者不是数字数字，请检查！！");
+                    return;
+                }
+
+            }
+
+            double[,] LiShuDu_Ckz = ReadXmlData();    //this array is used to save the the map inthe XML;
+            double[] array = new double[LiShuDu_Ckz.GetLength(0)];
+            for (int i = 0; i < LiShuDu_Ckz.GetLength(1); i++)
+            {
+                for (int k = 0; k < LiShuDu_Ckz.GetLength(0); k++)
+                {
+                    array[k] = LiShuDu_Ckz[k, i];
+                }
+                if (!(Convert.ToDouble(saveData[i]) > array.Min() && Convert.ToDouble(saveData[i]) < array.Max()))
+                {
+
+                    MessageBox.Show("输入的:" + name[i] + " 数据不在其隶属度范围（" + array.Min() + "," + array.Max() + "）内，请检查！！",name[i]+"数据有误");
+                    return;
+                }
+            }
             sc.Save_SQL_Data(saveData,"AssessInputValue");
             calculate(0);//模式为0，参数任意
         }

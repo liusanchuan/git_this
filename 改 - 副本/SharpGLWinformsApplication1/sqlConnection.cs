@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using System.Data;
+using System.Text.RegularExpressions;
 namespace SharpGLWinformsApplication1
 {
 
@@ -95,4 +96,27 @@ namespace SharpGLWinformsApplication1
             }
         }
     }
+    class JudgeInputText
+    {
+        
+        public bool judge(string input)
+        {
+            if (input.Trim().Length == 0)
+            {
+                //System.Windows.Forms.MessageBox.Show("您未输入数字");
+                return false;
+            }
+            else
+            {
+                string pattern = @"^-?\d+\.?\d*$";
+                Match m = Regex.Match(input.Trim(), pattern);   //匹配正则表达式
+                if (!m.Success)   // 输入的不是数字
+                {
+                    //System.Windows.Forms.MessageBox.Show("请正确输入应力值");
+                    return false;
+                }
+            }
+            return true;
+        }
+      }
 }

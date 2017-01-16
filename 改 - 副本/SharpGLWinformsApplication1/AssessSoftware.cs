@@ -74,9 +74,12 @@ namespace SharpGLWinformsApplication1
             int response_num = check();
             if (response_num == 3)
             {
+                this.Visible = false;
                 Main_Form Zhujiemian = new Main_Form();
                 Zhujiemian.ShowDialog();
+                this.Close();
                 Zhujiemian.Dispose();
+                
 
             }
             else if (response_num == 2)

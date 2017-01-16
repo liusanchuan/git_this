@@ -286,6 +286,7 @@
     <None Include="logo\org_zwanoo_android_speedtest_24px_1068411_easyicon.net.png" />
     <None Include="logo\close_48px_1199932_easyicon.net.png" />
     <None Include="logo\close_24px_1199932_easyicon.net.png" />
+    <Content Include="README.txt" />
     <Content Include="Resources\126.jpg" />
     <Content Include="Resources\historydata.xml">
       <SubType>Designer</SubType>

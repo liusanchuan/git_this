@@ -91,6 +91,30 @@ namespace SharpGLWinformsApplication1
         //多条件查询 CrackInfo中信息
         private void button1_Click(object sender, EventArgs e)
         {
+            JudgeInputText Judge = new JudgeInputText();
+            if(!(Judge.judge(textBox1.Text.Trim())||
+                Judge.judge(textBox15.Text.Trim())||
+                Judge.judge(textBox16.Text)||
+                Judge.judge(textBox3.Text)))
+            {
+                MessageBox.Show("输入字符为空或者非数字，请检查！");
+                textBox1.Text = textBox3.Text=textBox15.Text=textBox16.Text="";
+
+                return;
+            }
+            if(!(Judge.judge(textBox1.Text.Trim()))){
+                textBox1.Text="";
+            }
+            if(!(Judge.judge(textBox15.Text.Trim()))){
+                textBox15.Text="";
+            }
+            if(!Judge.judge(textBox16.Text.Trim())){
+                textBox16.Text="";
+            }
+            if(!(Judge.judge(textBox3.Text.Trim()))){
+                textBox3.Text="";
+            }
+
             if (conn.State != ConnectionState.Open)
                 conn.Close();
             //ConnectionString = "Data Source=MS-20160121SCPS;Initial Catalog=PlatformFlawBase;"
@@ -156,6 +180,16 @@ namespace SharpGLWinformsApplication1
         //插入裂纹数据
         private void button7_Click(object sender, EventArgs e)
         {
+            JudgeInputText Judge=new JudgeInputText();
+            if(!(Judge.judge(textBox1.Text.Trim())&&
+                Judge.judge(textBox15.Text.Trim())&&
+                Judge.judge(textBox16.Text)&&
+                Judge.judge(textBox3.Text)))
+            {
+                MessageBox.Show("输入字符为空或者非数字，请检查！");
+                return;
+            }
+
             var count = 0;
             if (conn.State != ConnectionState.Open)
                 conn.Close();

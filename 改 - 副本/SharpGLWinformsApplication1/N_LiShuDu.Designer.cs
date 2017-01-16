@@ -370,6 +370,8 @@
             this.Controls.Add(this.skinMenuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MainMenuStrip = this.skinMenuStrip1;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "N_LiShuDu";
             this.Text = "N_LiShuDu";
             this.Load += new System.EventHandler(this.N_LiShuDu_Load);

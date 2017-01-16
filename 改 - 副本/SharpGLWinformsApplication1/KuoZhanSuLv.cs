@@ -28,7 +28,17 @@ namespace SharpGLWinformsApplication1
                 textBox5_Kc.Text.Trim().ToString(),
                 textBox1_a0.Text.Trim().ToString()
             };
-            sc.Save_SQL_Data(saveData, "ExpandVelocity");
+            JudgeInputText Judge = new JudgeInputText();
+            for (int i = 0; i < saveData.Length; i++)
+            {
+                if (Judge.judge(saveData[i]) == false)
+                {
+                    MessageBox.Show("输入的内容为空或者不是数字数字，请检查！！");
+                    return;
+                }
+
+            }
+                sc.Save_SQL_Data(saveData, "ExpandVelocity");
             //double E = 212000, D_kth = 37.6, Kc = 1, KCmax = 1, KCmin = 0, D_KC, D_K, R;
 
 
