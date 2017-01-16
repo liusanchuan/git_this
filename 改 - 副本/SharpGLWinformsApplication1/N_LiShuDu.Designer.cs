@@ -53,9 +53,9 @@
             this.T9 = new CCWin.SkinControl.SkinWaterTextBox();
             this.skinPictureBox9 = new CCWin.SkinControl.SkinPictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.skinButton2_save = new CCWin.SkinControl.SkinButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
-            this.skinButton2_save = new CCWin.SkinControl.SkinButton();
             this.skinMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.skinPictureBox9)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -337,6 +337,21 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "1";
             // 
+            // skinButton2_save
+            // 
+            this.skinButton2_save.BackColor = System.Drawing.Color.Transparent;
+            this.skinButton2_save.ControlState = CCWin.SkinClass.ControlState.Normal;
+            this.skinButton2_save.DownBack = null;
+            this.skinButton2_save.Location = new System.Drawing.Point(702, 152);
+            this.skinButton2_save.MouseBack = null;
+            this.skinButton2_save.Name = "skinButton2_save";
+            this.skinButton2_save.NormlBack = null;
+            this.skinButton2_save.Size = new System.Drawing.Size(55, 39);
+            this.skinButton2_save.TabIndex = 16;
+            this.skinButton2_save.Text = "保存";
+            this.skinButton2_save.UseVisualStyleBackColor = false;
+            this.skinButton2_save.Click += new System.EventHandler(this.skinButton2_save_Click);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -363,21 +378,6 @@
             this.skinButton1.UseVisualStyleBackColor = false;
             this.skinButton1.Click += new System.EventHandler(this.skinButton1_Click);
             // 
-            // skinButton2_save
-            // 
-            this.skinButton2_save.BackColor = System.Drawing.Color.Transparent;
-            this.skinButton2_save.ControlState = CCWin.SkinClass.ControlState.Normal;
-            this.skinButton2_save.DownBack = null;
-            this.skinButton2_save.Location = new System.Drawing.Point(702, 152);
-            this.skinButton2_save.MouseBack = null;
-            this.skinButton2_save.Name = "skinButton2_save";
-            this.skinButton2_save.NormlBack = null;
-            this.skinButton2_save.Size = new System.Drawing.Size(55, 39);
-            this.skinButton2_save.TabIndex = 16;
-            this.skinButton2_save.Text = "保存";
-            this.skinButton2_save.UseVisualStyleBackColor = false;
-            this.skinButton2_save.Click += new System.EventHandler(this.skinButton2_save_Click);
-            // 
             // N_LiShuDu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -391,6 +391,7 @@
             this.MinimizeBox = false;
             this.Name = "N_LiShuDu";
             this.Text = "N_LiShuDu";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.N_LiShuDu_FormClosing);
             this.Load += new System.EventHandler(this.N_LiShuDu_Load);
             this.skinMenuStrip1.ResumeLayout(false);
             this.skinMenuStrip1.PerformLayout();

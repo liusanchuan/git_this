@@ -139,7 +139,7 @@ namespace SharpGLWinformsApplication1
 
                         chart1.Series[0].Name = "S" + Cedian;
                         chart1.Series[1].Name = "T" + Cedian;
-                        groupBox2.Text = mystr + groupBox2.Text;
+                        //groupBox2.Text = mystr + groupBox2.Text;
                     }
                 }
             }

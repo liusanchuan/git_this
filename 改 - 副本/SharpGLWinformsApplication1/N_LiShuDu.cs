@@ -91,60 +91,125 @@ namespace SharpGLWinformsApplication1
         }
         private void 应力值ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!IsTheDataSaved())
+            {
+                return;
+            }
             Col = 0;
             appendValue(Col);
         }
         private void 震动ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!IsTheDataSaved())
+            {
+                return;
+            }
             Col = 1;
             appendValue(Col);
         }
         private void 形变量ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!IsTheDataSaved())
+            {
+                return;
+            }
             Col = 2;
             appendValue(Col);
         }
 
         private void 裂纹形位ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!IsTheDataSaved())
+            {
+                return;
+            }
             Col = 3;
             appendValue(Col);
         }
 
         private void 材料参数ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!IsTheDataSaved())
+            {
+                return;
+            }
             Col = 4;
             appendValue(Col);
         }
 
         private void 涂层烧蚀量ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!IsTheDataSaved())
+            {
+                return;
+            }
             Col = 5;
             appendValue(Col);
         }
 
         private void 传动阻力ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!IsTheDataSaved())
+            {
+                return;
+            }
             Col = 6;
             appendValue(Col);
         }
 
         private void 电机扭矩ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!IsTheDataSaved())
+            {
+                return;
+            }
             Col = 7;
             appendValue(Col);
         }
 
         private void 制动力矩ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!IsTheDataSaved())
+            {
+                return;
+            }
             Col = 8;
             appendValue(Col);
         }
 
         private void 液压及电控ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!IsTheDataSaved())
+            {
+                return;
+            }
             Col = 9;
             appendValue(Col);
+        }
+
+        //判断当前数据是否保存
+        public bool IsTheDataSaved()
+        {
+            if(!(
+            Convert.ToString(dataGridView1.Rows[0].Cells[Col].Value) == T9.Text&&
+            Convert.ToString(dataGridView1.Rows[1].Cells[Col].Value) == T7.Text&&
+            Convert.ToString(dataGridView1.Rows[2].Cells[Col].Value) == T5.Text&&
+            Convert.ToString(dataGridView1.Rows[3].Cells[Col].Value) == T3.Text&&
+            Convert.ToString(dataGridView1.Rows[4].Cells[Col].Value) == T1.Text&&
+            Convert.ToString(dataGridView1.Rows[5].Cells[Col].Value) == T0.Text))
+            {
+                DialogResult dr= MessageBox.Show("您已更改 " + name[Col] + " 的隶属度参数，但未保存！请确实是否保存？","未保存",MessageBoxButtons.OKCancel);
+                if (dr == System.Windows.Forms.DialogResult.OK)
+                {
+                    SaveDataGridToXml(Col,1);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public void SaveDataGridToXml(int Columns,int Mode)  //Mode分辨是重置(0)还是普通存储(1)
@@ -260,46 +325,9 @@ namespace SharpGLWinformsApplication1
             doc.Save(str);
         }
 
-        private void  ColorChange(int col){
-
-            switch (col){
-                case 0:
-                    groupBox1.BackColor = 应力值ToolStripMenuItem.BackColor = Color.LightBlue;
-                    break;
-                case 1:
-                    groupBox1.BackColor = 震动ToolStripMenuItem.BackColor = Color.LightCoral; 
-                    break;
-                case 2:
-                    groupBox1.BackColor = 形变量ToolStripMenuItem.BackColor = Color.LightCyan;
-                    break;
-                case 3:
-                    groupBox1.BackColor = 裂纹形位ToolStripMenuItem.BackColor = Color.LightGoldenrodYellow;
-                    break;
-                case 4:
-                    groupBox1.BackColor = 材料参数ToolStripMenuItem.BackColor = Color.LightGray;
-                    break;
-                case 5:
-                    groupBox1.BackColor = 涂层烧蚀量ToolStripMenuItem.BackColor = Color.LightGreen;
-                    break;
-                case 6:
-                    groupBox1.BackColor = 传动阻力ToolStripMenuItem.BackColor = Color.LightPink;
-                    break;
-                case 7:
-                    groupBox1.BackColor = 电机扭矩ToolStripMenuItem.BackColor = Color.LightSalmon;
-                    break;
-                case 8:
-                    groupBox1.BackColor = 制动力矩ToolStripMenuItem.BackColor = Color.LightSeaGreen;
-                    break;
-                case 9:
-                    groupBox1.BackColor = 液压及电控ToolStripMenuItem.BackColor = Color.LightYellow;
-                    break;
-            }
-
-
-        }
         private void skinPictureBox9_Click(object sender, EventArgs e)
         {
-            SaveDataGridToXml(Col,1);
+            //SaveDataGridToXml(Col,1);
         }
 
         private void skinButton1_Click(object sender, EventArgs e)
@@ -314,6 +342,14 @@ namespace SharpGLWinformsApplication1
         private void skinButton2_save_Click(object sender, EventArgs e)
         {
             SaveDataGridToXml(Col, 1);            
+        }
+
+        private void N_LiShuDu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!IsTheDataSaved())
+            {
+                e.Cancel = true;
+            }              
         }
 
  
